@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/*COLORS*/
+.primaryColor {
+  background-color: black;
+}
+
+.secondaryColor {
+  background-color: #00b0ff;
+}
+
+.primaryTextColor {
+  color: black;
+}
+.secondaryTextColor {
+  color: #00b0ff;
+}
+
+.styledHeader {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: bold;
+}
+
+.titles {
+  font-family: "Roboto Slab", sans-serif;
+}
+
+.content {
+  position: relative;
+  top: 100vh;
+}
+
+/*Overriding the default materialize settings*/
+.slider.fullscreen {
+  top: 3vh;
+}
+
+/*Overring the indicator color*/
+.slider .indicators .indicator-item.active {
+  background-color: #00b0ff;
+}
+
+.slider .indicators .indicator-item {
+  margin-bottom: 24px;
+  width: 12px;
+  height: 12px;
+  background: #4444;
+}
