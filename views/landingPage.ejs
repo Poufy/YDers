@@ -26,6 +26,7 @@
       <div class="slider fullscreen seperator">
         <ul class="slides">
           <li>
+              
             <img class="responsive-img" src="img/slider2.jpg" alt="lmao" />
             <div class="caption center-align">
               <h3 class="primaryTextColor">شعار يقشعر البدن</h3>
@@ -165,7 +166,56 @@
         </section>
         <!--START OF FORM-->
         <section class="section section-follow light-blue darken2 white-text center seperator scrollspy" id="apply">
-<h4>التقديم</h4>
+                <img src="img/form.png" style="width:50px;height:50px">
+            <h4 class="titles">ملئ الطلب</h4>
+            <hr style="width: 50%;margin:auto">
+                    <h5 class="center titles">المدينة</h5>
+                    <img src="img/city.png" alt="City" style="height: 50px;width: 50px">
+            <div class="container">
+            <div class="input-field col s12 input-form">
+                    <select>
+                      <option value="" disabled selected>إختر مدينتك</option>
+                      <option value="dms">دمشق</option>
+                      <option value="alp">حلب</option>
+                    </select>
+            </div>
+        </div>
+        <hr style="width: 50%;margin:auto">
+            <h5 class="center titles">المادة</h5>
+            <img src="img/subject.png" alt="city" style="height: 50px;width: 50px">
+            <div class="container">
+            <div class="input-field col s12 input-form">
+                    <select>
+                      <option value="" disabled selected> المادة</option>
+                      <option value="math">الرياضيات</option>
+                      <option value="phys">الفيزياء</option>
+                      <option value="chem">الكيمياء</option>
+                      <option value="bio">العلوم</option>
+                      <option value="ar">العربية</option>
+                      <option value="eng">الإنجليزية</option>
+                      <option value="fr">الفرنسية</option>
+                      <option value="geo">الجغرافية</option>
+                    </select>
+            </div>
+        </div>
+        <hr style="width: 50%;margin:auto">
+            <h5 class="center titles">الوقت</h5>
+            <img src="img/time.png" alt="time" style="height: 50px;width: 50px">
+        <div class="container">
+                <div class="input-field col s12 input-form">
+                        <select>
+                          <option value="" disabled selected> الوقت</option>
+                          <option value="math">00</option>
+                          <option value="phys">00</option>
+                          <option value="chem">00</option>
+                          <option value="bio">00</option>
+                          <option value="ar">00</option>
+                          <option value="eng">00</option>
+                          <option value="fr">00</option>
+                          <option value="geo">00</option>
+                        </select>
+                </div>
+            </div>
         </section>
         <% include partials/footer %>
       </div>
@@ -190,5 +240,9 @@
         var elems = document.querySelectorAll('.scrollspy');
         var instances = M.ScrollSpy.init(elems, {});
       });</script>
-      
+      <script>
+       document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, {});
+  });</script>
 </html>

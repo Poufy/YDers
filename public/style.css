@@ -31,7 +31,11 @@
 }
 
 .titles {
-  font-family: "Roboto Slab", sans-serif;
+  padding: 0 0 20px 0;
+}
+
+ul.dropdown-content.select-dropdown li span {
+  color: rgba(0, 200, 200, 0.8);
 }
 
 .content {
@@ -54,4 +58,9 @@
   width: 12px;
   height: 12px;
   background: #4444;
+}
+
+/* FORM SPACING */
+.input-form {
+  padding-bottom: 24px;
 }
