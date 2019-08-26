@@ -4,6 +4,7 @@ const mongoUrl = require("./config");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const landingPageRoute = require("./api/routes/landingPage");
+const teacherRouter = require("./api/routes/teacher");
 
 mongoose.connect(mongoUrl.url, { useNewUrlParser: true });
 /* MIDDLEWEAR */
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", landingPageRoute); //Any request to / will be handled by the landingPageRoute
+app.use("/api", teacherRouter);
 //if you reach this line that means no route in universties was able to handle the request therefore we catch the error here
 app.use((req, res, next) => {
   const error = new Error("Not found");
