@@ -35,7 +35,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", landingPageRoute); //Any request to / will be handled by the landingPageRoute
-app.use("/api", teacherRouter);
+app.use("/api/teachers", teacherRouter);
 //if you reach this line that means no route in universties was able to handle the request therefore we catch the error here
 app.use((req, res, next) => {
   const error = new Error("Not found");
