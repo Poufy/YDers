@@ -90,9 +90,9 @@
                 <div class="col s6 m3">
                     <div class="card-panel light-blue lighten-1">
                         <img src="img/mathIcon2.png" alt="Math" style="height: 60px;width:60px"><br>
-                        <h5 id="math_id">الرياضيات</h5>
+                        <h5>الرياضيات</h5>
                         <div class="mathTeachers" style="font-weight: 500;">
-                            <h5><%= map.get("Math") %></h5>
+                            <h5 id="math_header">0</h5>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                             <img src="img/chemIcon.png" alt="Math" style="height: 60px;width:60px"><br>
                             <h5>الكيمياء</h5>
                             <div class="mathTeachers" style="font-weight: 500;">
-                                <h5>4</h5>
+                                    <h5 id="chem_header">0</h5>
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                                 <img src="img/physIcon2.png" alt="Math" style="height: 60px;width:60px"><br>
                                 <h5>الفيزياء</h5>
                                 <div class="mathTeachers" style="font-weight: 500;">
-                                    <h5>7</h5>
+                                        <h5 id="phys_header">0</h5>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                                     <img src="img/bioIcon2.png" alt="Math" style="height: 60px;width:60px"><br>
                                     <h5>العلوم</h5>
                                     <div class="mathTeachers" style="font-weight: 500;">
-                                        <h5><%= map.get("Biology") %></h5>
+                                            <h5 id="bio_header">0</h5>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                             <img src="img/arIcon.png" alt="Math" style="height: 60px;width:60px"><br>
                             <h5>العربية</h5>
                             <div class="mathTeachers" style="font-weight: 500;">
-                                <h5>6</h5>
+                                    <h5 id="ar_header">0</h5>
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                                 <img src="img/engIcon2.png" alt="Math" style="height: 60px;width:60px"><br>
                                 <h5>الإنجليزية</h5>
                                 <div class="mathTeachers" style="font-weight: 500;">
-                                    <h5>14</h5>
+                                        <h5 id="eng_header">0</h5>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                                     <img src="img/frenIcon.png" alt="Math" style="height: 60px;width:60px"><br>
                                     <h5>الفرنسية</h5>
                                     <div class="mathTeachers" style="font-weight: 500;">
-                                        <h5>5</h5>
+                                            <h5 id="fr_header">0</h5>
                                     </div>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
                                         <img src="img/geoIcon.png" alt="Math" style="height: 60px;width:60px"><br>
                                         <h5>الجغرافية</h5>
                                         <div class="mathTeachers" style="font-weight: 500;">
-                                            <h5><%= map.get("Geography") %></h5>
+                                                <h5 id="geo_header">0</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -224,11 +224,8 @@
     
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      var elems = document.querySelectorAll(".sidenav");
-      var instances = M.Sidenav.init(elems, { draggable: true });
-    });
+  <script src="/javascript/fetchingHeaders.js">
+    
   </script>
   <script>
     var elems = document.querySelectorAll(".slider");
