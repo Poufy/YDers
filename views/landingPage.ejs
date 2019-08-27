@@ -173,7 +173,7 @@
                     <img src="img/city.png" alt="City" style="height: 50px;width: 50px">
             <div class="container">
             <div class="input-field col s12 input-form">
-                    <select>
+                    <select id="city-select">
                       <option value="" disabled selected>إختر مدينتك</option>
                       <option value="dms">دمشق</option>
                       <option value="alp">حلب</option>
@@ -188,13 +188,13 @@
                     <select>
                       <option value="" disabled selected> المادة</option>
                       <option value="math">الرياضيات</option>
-                      <option value="phys">الفيزياء</option>
-                      <option value="chem">الكيمياء</option>
-                      <option value="bio">العلوم</option>
-                      <option value="ar">العربية</option>
-                      <option value="eng">الإنجليزية</option>
-                      <option value="fr">الفرنسية</option>
-                      <option value="geo">الجغرافية</option>
+                      <option value="physics">الفيزياء</option>
+                      <option value="chemistry">الكيمياء</option>
+                      <option value="biology">العلوم</option>
+                      <option value="arabic">العربية</option>
+                      <option value="english">الإنجليزية</option>
+                      <option value="french">الفرنسية</option>
+                      <option value="geography">الجغرافية</option>
                     </select>
             </div>
         </div>
@@ -202,17 +202,8 @@
             <h5 class="center titles">الوقت</h5>
             <img src="img/time.png" alt="time" style="height: 50px;width: 50px">
         <div class="container">
-                <div class="input-field col s12 input-form">
-                        <select>
-                          <option value="" disabled selected> الوقت</option>
-                          <option value="math">00</option>
-                          <option value="phys">00</option>
-                          <option value="chem">00</option>
-                          <option value="bio">00</option>
-                          <option value="ar">00</option>
-                          <option value="eng">00</option>
-                          <option value="fr">00</option>
-                          <option value="geo">00</option>
+                <div class="col s12">
+                        <select id="time-select">
                         </select>
                 </div>
             </div>
@@ -224,9 +215,10 @@
     
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="/javascript/fetchingHeaders.js">
+  <script src="/javascript/fetchingHeaders.js"></script>
+  <script src="/javascript/selectionFiltering.js"></script>
     
-  </script>
+  
   <script>
     var elems = document.querySelectorAll(".slider");
     var instances = M.Slider.init(elems, {

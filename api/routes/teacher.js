@@ -101,6 +101,33 @@ router.get("/:teacherId", (req, res) => {
     });
 });
 
+//Get teachers by their city
+router.get("/location/:location", (req, res) => {
+  Teacher.find({ location: req.params.location })
+    .exec()
+    .then(teachers => {
+      const response = {
+        teachersCount: teachers.length,
+        teachers: teachers.map(teacher => {
+          return {
+            _id: teacher._id,
+            name: teacher.name,
+            lastName: teacher.lastName,
+            subject: teacher.subject,
+            location: teacher.location,
+            time: teacher.time
+          };
+        })
+      };
+      res.status(200).json({ response }); //we could use this data to pass it to some view later
+    })
+    .catch(err => {
+      res.status(500).json({
+        error: err
+      });
+    });
+});
+
 //UPDATE REQUEST
 router.patch("/:teacherId", (req, res) => {
   Teacher.updateOne({ _id: req.params.teacherId }, { $set: req.body })
