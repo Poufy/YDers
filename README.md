@@ -11,3 +11,13 @@
 - [ ] SIGNUP/LOGIN in order to submit the form
 
 - [ ] A seperate route for admins to be able to easily make post/delete/update requests
+
+# Problems
+
+Fetching the data:
+
+Possible Solutions:
+
+	- waiting for the data to be fetched entirely then loading the page and passing the data to the ejs file (slows down the website)
+
+	- Learning and using Ajax to make fetch requests on the client side and update the DOM without having to reload the page (Good solution but needs learning Ajax)
