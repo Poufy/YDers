@@ -36,35 +36,16 @@ form.addEventListener("submit", e => {
   if (errors.length > 0) {
     errorElement.innerText = errors.join(", ");
   } else {
-    // let xhr = new XMLHttpRequest();
-    // xhr.open("POST", "localhost:3000/api/forms");
-    // xhr.setRequestHeader(
-    //   "x-www-form-urlencoded",
-    //   "application/json;charset=UTF-8"
-    // );
-    // xhr.onload = function() {
-    //   if (xhr.status === 200) {
-    //     alert("Something went wrong.");
-    //   } else if (xhr.status !== 200) {
-    //     alert("Request failed.  Returned status of " + xhr.status);
-    //   }
-    // };
-    // xhr.send(
-    //   JSON.stringify({
-    //     name: nameInput.value,
-    //     lastName: lastNameInput.value,
-    //     phoneNumber: phoneNumberInput.value,
-    //     subject: subjectSelect.value,
-    //     location: citySelect.value,
-    //     day: daySelect.value,
-    //     time: timeSelect.value
-    //   })
-    // );
-    $.ajax({
-      url: "/api/forms",
-      type: "POST",
-      dataType: "json",
-      data: {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:3000/api/forms");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.onload = function() {
+      if (xhr.status === 201) {
+        alert("تم إرسال الطلب بنجاح");
+      }
+    };
+    xhr.send(
+      JSON.stringify({
         name: nameInput.value,
         lastName: lastNameInput.value,
         phoneNumber: phoneNumberInput.value,
@@ -72,7 +53,22 @@ form.addEventListener("submit", e => {
         location: citySelect.value,
         day: daySelect.value,
         time: timeSelect.value
-      }
-    });
+      })
+    );
+    //Look into fetch to make the request and remove jquery
+    // $.ajax({
+    //   url: "/api/forms",
+    //   type: "POST",
+    //   dataType: "json",
+    //   data: {
+    //     name: nameInput.value,
+    //     lastName: lastNameInput.value,
+    //     phoneNumber: phoneNumberInput.value,
+    //     subject: subjectSelect.value,
+    //     location: citySelect.value,
+    //     day: daySelect.value,
+    //     time: timeSelect.value
+    //   }
+    // });
   }
 });
