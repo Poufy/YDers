@@ -34,9 +34,9 @@
   padding: 0 0 20px 0;
 }
 
-ul.dropdown-content.select-dropdown li span {
+/* ul.dropdown-content.select-dropdown li span {
   color: rgba(0, 200, 200, 0.8);
-}
+} */
 
 .content {
   position: relative;
@@ -64,3 +64,5 @@ ul.dropdown-content.select-dropdown li span {
 .input-form {
   padding-bottom: 24px;
 }
+
+

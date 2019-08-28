@@ -19,6 +19,7 @@ citySelection.onchange = () => {
       const object = JSON.parse(this.responseText);
       const timesList = object.response.teachers.map(teacher => teacher.time);
       const timesSet = new Set(timesList); //To remove duplicates
+      removeOptions(timeSelection); //Reset the select before updating it
       for (const k of timesSet.values()) {
         addOptionToTimes(k);
       }
@@ -35,7 +36,14 @@ citySelection.onchange = () => {
 
 function addOptionToTimes(time) {
   let option = document.createElement("option");
-  option.value = option.innerHTML = time;
+  option.value = time;
+  time = time % 12 !== time ? `${time % 12}:00 مسائاً` : `${time}:00 صباحا`;
+  option.innerHTML = time;
   timeSelection.add(option);
-  console.log("method is called");
+}
+
+function removeOptions(selectbox) {
+  for (a in selectbox.options) {
+    selectbox.options.remove(0);
+  }
 }

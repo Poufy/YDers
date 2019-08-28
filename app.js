@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const landingPageRoute = require("./api/routes/landingPage");
 const teacherRouter = require("./api/routes/teacher");
+const formRouter = require("./api/routes/form");
 
 mongoose.connect(mongoUrl.url, { useNewUrlParser: true });
 /* MIDDLEWEAR */
@@ -33,10 +34,10 @@ app.use((req, res, next) => {
 
   next();
 });
-
 app.use("/", landingPageRoute); //Any request to / will be handled by the landingPageRoute
 app.use("/api/teachers", teacherRouter);
-//if you reach this line that means no route in universties was able to handle the request therefore we catch the error here
+app.use("/api/forms", formRouter);
+//if you reach this line that means no route was able to handle the request therefore we catch the error here
 app.use((req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;
