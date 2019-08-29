@@ -61,6 +61,12 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("*", (req, res, next) => {
+  //setting a global variable on all routes (user)
+  res.locals.user = req.user || null; //a req.user variable is created when logging in successfuly with passport
+  next();
+});
+
 //Handling the routes
 app.use("/", landingPageRoute); //Any request to / will be handled by the landingPageRoute
 app.use("/api/teachers", teacherRouter);

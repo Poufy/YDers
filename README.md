@@ -10,7 +10,11 @@
 
 - [x] Submitting the form to the database
 
-- [ ] Fix flash messages/express-validator on user signup
+- [x] Fix flash messages/express-validator on user signup
+
+- [ ] Put the secret and the mongo url in a seperate folder
+
+- [ ] Prevent duplicate signups with the same email
 
 - [ ] Consider the subject in the query
 
@@ -41,10 +45,8 @@ User signin before submitting the form:
     	- Using passport js to handle the authentication.(Need to read on passportjs but seems to be more reliable)
 
 Form validation:
-	Possible Solutions:
-		
-		- Check the input in the front-end and don't allow the submission unless the data conforms to some rules. (Not very secure but easier to implement and results in cleaner code)
+Possible Solutions: - Check the input in the front-end and don't allow the submission unless the data conforms to some rules. (Not very secure but easier to implement and results in cleaner code)
 
-		- Validate the input in the backend using express-validator (More secure but results in uglier code and more troublesome to implement) 
+    	- Validate the input in the backend using express-validator (More secure but results in uglier code and more troublesome to implement)
 
 I went with a mixture of both where I validated the main submission form on the landing page in the front-end, and did the signup with the backend using express-validator
