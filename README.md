@@ -10,6 +10,8 @@
 
 - [x] Submitting the form to the database
 
+- [ ] Fix flash messages/express-validator on user signup
+
 - [ ] Consider the subject in the query
 
 - [ ] SIGNUP/LOGIN in order to submit the form

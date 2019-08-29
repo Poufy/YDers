@@ -3,9 +3,12 @@ const app = express();
 const mongoUrl = require("./config");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const session = require("express-session");
+const flash = require("connect-flash");
 const landingPageRoute = require("./api/routes/landingPage");
 const teacherRouter = require("./api/routes/teacher");
 const formRouter = require("./api/routes/form");
+const userRouter = require("./api/routes/user");
 
 mongoose.connect(mongoUrl.url, { useNewUrlParser: true });
 /* MIDDLEWEAR */
@@ -14,6 +17,17 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.set("view engine", "ejs");
+
+// Express Session Middleware
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+app.use(require("connect-flash")());
 
 //Preventing CORS errors
 //We need to append headers before the response is sent back to the client
@@ -34,9 +48,12 @@ app.use((req, res, next) => {
 
   next();
 });
+
+//Handling the routes
 app.use("/", landingPageRoute); //Any request to / will be handled by the landingPageRoute
 app.use("/api/teachers", teacherRouter);
 app.use("/api/forms", formRouter);
+app.use("/user", userRouter);
 //if you reach this line that means no route was able to handle the request therefore we catch the error here
 app.use((req, res, next) => {
   const error = new Error("Not found");

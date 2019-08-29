@@ -42,6 +42,7 @@ form.addEventListener("submit", e => {
     xhr.onload = function() {
       if (xhr.status === 201) {
         alert("تم إرسال الطلب بنجاح");
+        //reset the form fields
       }
     };
     xhr.send(
@@ -55,20 +56,5 @@ form.addEventListener("submit", e => {
         time: timeSelect.value
       })
     );
-    //Look into fetch to make the request and remove jquery
-    // $.ajax({
-    //   url: "/api/forms",
-    //   type: "POST",
-    //   dataType: "json",
-    //   data: {
-    //     name: nameInput.value,
-    //     lastName: lastNameInput.value,
-    //     phoneNumber: phoneNumberInput.value,
-    //     subject: subjectSelect.value,
-    //     location: citySelect.value,
-    //     day: daySelect.value,
-    //     time: timeSelect.value
-    //   }
-    // });
   }
 });
