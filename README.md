@@ -49,8 +49,19 @@ User signin before submitting the form:
     	- Using passport js to handle the authentication.(Need to read on passportjs but seems to be more reliable)
 
 Form validation:
-Possible Solutions: - Check the input in the front-end and don't allow the submission unless the data conforms to some rules. (Not very secure but easier to implement and results in cleaner code)
+
+    Possible Solutions:
+
+    	- Check the input in the front-end and don't allow the submission unless the data conforms to some rules. (Not very secure but easier to implement and results in cleaner code)
 
     	- Validate the input in the backend using express-validator (More secure but results in uglier code and more troublesome to implement)
 
-I went with a mixture of both where I validated the main submission form on the landing page in the front-end, and did the signup with the backend using express-validator
+I went with a mixture of both where I validated the main submission form on the landing page in the front-end, and did the signup with the backend using express-validator. Nevermind, I changed both to back end but might change it again later. (update this in the future).
+
+Saving Inputs When Logged Out:
+
+    Possible Solutions:
+
+    	- Find some way to store the current session even when not logged in and reload the session when user logs back in.
+
+    	- Just do the logging in in the front-end using an ajax request without having to reload the page.
