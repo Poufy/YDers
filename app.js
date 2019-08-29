@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("connect-flash");
+// const cookieParser = require("cookie-parser");
 const landingPageRoute = require("./api/routes/landingPage");
 const teacherRouter = require("./api/routes/teacher");
 const formRouter = require("./api/routes/form");
@@ -18,16 +19,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.set("view engine", "ejs");
 
-// Express Session Middleware
+// set sessions
 app.use(
   session({
-    secret: "keyboard cat",
-    resave: true,
-    saveUninitialized: true
+    secret: "cute cat",
+    resave: true, // forces the session to be saved back to the store
+    saveUninitialized: true // dont save unmodified
   })
 );
-
-app.use(require("connect-flash")());
+app.use(flash());
+app.use(function(req, res, next) {
+  res.locals.messages = require("express-messages")(req, res);
+  next();
+});
 
 //Preventing CORS errors
 //We need to append headers before the response is sent back to the client

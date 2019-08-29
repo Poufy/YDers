@@ -1,3 +1,6 @@
+<!-- Display any errors message if they exist -->
+<!-- work on the styling later -->
+<%- messages('message', locals) %>
 <form action="/user/register" method="post">
   <div>
     <label>Email:</label>
@@ -19,3 +22,12 @@
     <input type="submit" value="Register" />
   </div>
 </form>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"
+/>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
