@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
+const passport = require("passport");
 //Bring in the user module
 let User = require("../models/User");
 
@@ -71,7 +72,17 @@ router.post(
   }
 );
 
+//Login Form
 router.get("/login", (req, res) => {
   res.render("login");
+});
+
+//Login Process
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/user/login",
+    failureFlash: true
+  })(req, res, next);
 });
 module.exports = router;

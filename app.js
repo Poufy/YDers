@@ -3,6 +3,7 @@ const app = express();
 const mongoUrl = require("./config");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
 // const cookieParser = require("cookie-parser");
@@ -27,6 +28,13 @@ app.use(
     saveUninitialized: true // dont save unmodified
   })
 );
+
+// Passport Config
+require("./passport")(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash());
 app.use(function(req, res, next) {
   res.locals.messages = require("express-messages")(req, res);
