@@ -74,6 +74,7 @@ router.post(
 
 //Login Form
 router.get("/login", (req, res) => {
+  console.log("at the login page");
   res.render("login");
 });
 

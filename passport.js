@@ -1,6 +1,5 @@
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./api/models/User");
-const config = require("./config");
 const bcrypt = require("bcryptjs");
 
 module.exports = passport => {

@@ -14,7 +14,11 @@
 
 - [ ] Put the secret and the mongo url in a seperate folder
 
+- [ ] Perform the form POST request from the backend so you can also send the info about the logged in user along with it and do the warnings with flash
+
 - [ ] Prevent duplicate signups with the same email
+
+- [ ] Add Multiple passport strategies (Facebook, Google)
 
 - [ ] Consider the subject in the query
 
