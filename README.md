@@ -39,3 +39,12 @@ User signin before submitting the form:
     	- Make a schema for signup through mongoose and add it to the database and compare documents on login.(Not very flexable)
 
     	- Using passport js to handle the authentication.(Need to read on passportjs but seems to be more reliable)
+
+Form validation:
+	Possible Solutions:
+		
+		- Check the input in the front-end and don't allow the submission unless the data conforms to some rules. (Not very secure but easier to implement and results in cleaner code)
+
+		- Validate the input in the backend using express-validator (More secure but results in uglier code and more troublesome to implement) 
+
+I went with a mixture of both where I validated the main submission form on the landing page in the front-end, and did the signup with the backend using express-validator
