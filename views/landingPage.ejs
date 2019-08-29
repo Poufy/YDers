@@ -166,7 +166,7 @@
         </section>
         <!--START OF FORM-->
         <section class="section section-follow light-blue darken2 white-text center seperator scrollspy" id="apply">
-            <form id="form">
+            <form id="form" action="/api/forms" method="POST">
                 <img src="img/form.png" style="width:50px;height:50px">
             <h4 class="titles">ملئ الطلب</h4>
             <hr style="width: 50%;margin:auto">
@@ -174,7 +174,7 @@
                     <img src="img/city.png" alt="City" style="height: 50px;width: 50px">
             <div class="container">
             <div class="input-field col s12 input-form">
-                    <select id="city-select">
+                    <select id="city-select" name="city">
                       <option value="" disabled selected>اختر مدينتك</option>
                       <option value="dms">دمشق</option>
                       <option value="alp">حلب</option>
@@ -186,9 +186,9 @@
             <img src="img/subject.png" alt="city" style="height: 50px;width: 50px">
             <div class="container">
             <div class="input-field col s12 input-form">
-                    <select id="subject-select">
+                    <select id="subject-select" name="subject">
                       <option value="" disabled selected> المادة</option>
-                      <option value="math">الرياضيات</option>
+                      <option name="math">الرياضيات</option>
                       <option value="physics">الفيزياء</option>
                       <option value="chemistry">الكيمياء</option>
                       <option value="biology">العلوم</option>
@@ -204,7 +204,7 @@
             <img src="img/time.png" alt="time" style="height: 50px;width: 50px">
         <div class="container">
                 <div class="col s12" style="padding-bottom: 24px">
-                        <select id="day-select">
+                        <select id="day-select" name="day">
                                 <option value="" disabled selected>اليوم</option>
                                 <option value="sunday">الاحد</option>
                                 <option value="monday">الاثنين</option>
@@ -217,7 +217,7 @@
                 </div>
                 
                 <div class="col s12" style="padding-bottom: 2.5rem">
-                        <select id="time-select">
+                        <select id="time-select" name="time">
                                 <option value="" disabled selected>اختر الوقت المناسب</option>
                         </select>
                 </div>
@@ -228,18 +228,18 @@
             <div class="container">
             <div class="row">
                     <div class="input-field col s12 m6 l6">
-                      <input id="name-input" type="text" class="validate" style="color: white">
+                      <input id="name-input" type="text" class="validate" style="color: white" name="name">
                       <label for="name-input" style="color: white">الاسم</label>
                     </div>
                     <div class="input-field col s12 m6 l6">
-                            <input id="lastName-input" type="text" class="validate" style="color: white">
+                            <input id="lastName-input" type="text" class="validate" style="color: white" name="lastname">
                             <label for="lastName-input" style="color: white">الكنية</label>
                           </div>
                           
                 </div>
                 <div class="row">
                         <div class="input-field col s4 offset-s4">
-                                <input id="phoneNumber-input" type="number" class="validate" style="color: white">
+                                <input id="phoneNumber-input" type="number" class="validate" style="color: white" name="phone">
                                 <label for="phoneNumber-input" style="color: white">رقم الجوال</label>
                               </div>
                 </div>
@@ -259,7 +259,7 @@
                     <p id="error" class="red-text"></p>
                 </div>
         </section>
-      
+        <%- messages('message', locals) %>
         <% include partials/footer %>
       </div>
     </div>

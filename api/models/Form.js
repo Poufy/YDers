@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
 const formSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
+  userId: { type: String },
+  username: { type: String },
+  email: { type: String },
   name: { type: String, required: true, trimmed: true },
   lastName: { type: String, required: true, trimmed: true },
   phoneNumber: { type: String, require: true, trimmed: true },
