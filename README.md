@@ -14,7 +14,7 @@
 
 - [ ] Put the secret and the mongo url in a seperate folder
 
-- [ ] Perform the form POST request from the backend so you can also send the info about the logged in user along with it and do the warnings with flash
+- [x] Perform the form POST request from the front-end and send the info about the logged in user along with it
 
 - [ ] Prevent duplicate signups with the same email
 
@@ -22,7 +22,7 @@
 
 - [ ] Consider the subject in the query
 
-- [ ] SIGNUP/LOGIN in order to submit the form
+- [x] SIGNUP/LOGIN in order to submit the form
 
 - [ ] A seperate route for admins to be able to easily make post/delete/update requests
 

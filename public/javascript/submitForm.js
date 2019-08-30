@@ -35,18 +35,36 @@ form.addEventListener("submit", e => {
 
   if (errors.length > 0) {
     errorElement.innerText = errors.join(", ");
-  } else {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:3000/api/forms");
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.onload = function() {
-      if (xhr.status === 201) {
-        alert("تم إرسال الطلب بنجاح");
-        //reset the form fields
-      }
-    };
-    xhr.send(
-      JSON.stringify({
+  }
+  //   else {
+  //     let xhr = new XMLHttpRequest();
+  //     xhr.open("POST", "http://localhost:3000/api/forms");
+  //     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  //     xhr.onload = function() {
+  //       if (xhr.status === 201) {
+  //         alert("تم إرسال الطلب بنجاح");
+  //         //reset the form fields
+  //       }
+  //     };
+  //     xhr.send(
+  //       JSON.stringify({
+  //         name: nameInput.value,
+  //         lastName: lastNameInput.value,
+  //         phoneNumber: phoneNumberInput.value,
+  //         subject: subjectSelect.value,
+  //         location: citySelect.value,
+  //         day: daySelect.value,
+  //         time: timeSelect.value
+  //       })
+  //     );
+
+  //     //CLEAR FIELDS ADD SUCCESS MESSAGE
+  //   }
+  else {
+    $.ajax({
+      type: "POST",
+      url: "/api/forms",
+      data: {
         name: nameInput.value,
         lastName: lastNameInput.value,
         phoneNumber: phoneNumberInput.value,
@@ -54,9 +72,15 @@ form.addEventListener("submit", e => {
         location: citySelect.value,
         day: daySelect.value,
         time: timeSelect.value
-      })
-    );
-
-    //CLEAR FIELDS ADD SUCCESS MESSAGE
+      },
+      dataType: "json",
+      success: function(data, textStatus) {
+        /*It seems like when sending an ajax post request from the client to a route that has a redirect, the redirect happens but the url stays the same meaning the html display also stays the same.
+          To fix this instead of redirecting to another page I made the post route send an object {redirect: url} to the client and I used that object to change the url */
+        if (data.redirect) {
+          window.location.href = data.redirect;
+        }
+      }
+    });
   }
 });

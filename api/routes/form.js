@@ -85,7 +85,7 @@ function loggedIn(req, res, next) {
     next();
   } else {
     req.flash("error", "الرجاء تسجيل الدخول لاتمام الطلب");
-    res.redirect("/user/login");
+    res.send({ redirect: "/user/login" });
   }
 }
 module.exports = router;
