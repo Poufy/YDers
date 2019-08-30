@@ -17,8 +17,11 @@ router.get("/", (req, res) => {
         forms: forms.map(form => {
           return {
             _id: form._id,
+            userId: form.userId,
             name: form.name,
             lastName: form.lastName,
+            username: form.username,
+            email: form.email,
             phoneNumber: form.phoneNumber,
             subject: form.subject,
             location: form.location,
@@ -34,89 +37,54 @@ router.get("/", (req, res) => {
       });
     });
 });
-//add ,logged in after "/"
-router.post(
-  "/",
-  [
-    check("city", "Enter a valid email")
-      .not()
-      .isEmpty(),
-    check("subject", "Enter a valid email")
-      .not()
-      .isEmpty(),
-    check("day", "Enter a valid email")
-      .not()
-      .isEmpty(),
-    check("time", "Enter a valid email")
-      .not()
-      .isEmpty(),
-    check("name", "Enter a valid email")
-      .not()
-      .isEmpty(),
-    check("lastName", "Enter a valid email")
-      .not()
-      .isEmpty(),
-    check("phone", "Enter a valid email")
-      .not()
-      .isEmpty()
-  ],
-  loggedIn,
-  (req, res, next) => {
-    /*THIS IS ONE WAY OF DOING IT BUT NEED TO SAVE ALREADY FILLED FIELDS */
-    // ANOTHER WAY WOULD BE TO CHECK THE INPUTS BEFORE SUBMITTING
-    //OR DISABLE BUTTON UNTIL FIELDS ARE FULL
-    eval(locus);
-    const errors = validationResult(req); //if all the checks passed then this is empty
-    if (!errors.isEmpty()) {
-      errors.errors.forEach(element => {
-        req.flash("error", element.msg);
+
+router.post("/", loggedIn, (req, res, next) => {
+  const form = new Form({
+    //creating a form object from the module then turning it into a promise
+    _id: new mongoose.Types.ObjectId(),
+    userId: req.user._id,
+    email: req.user.email,
+    username: req.user.username,
+    name: req.body.name,
+    lastName: req.body.lastName,
+    phoneNumber: req.body.phoneNumber,
+    subject: req.body.subject,
+    location: req.body.location,
+    day: req.body.day,
+    time: req.body.time
+  });
+  form
+    .save()
+    .then(form => {
+      res.status(201).json({
+        message: "Added Form Successfully",
+        createdForm: {
+          _id: form._id,
+          userId: req.user._id,
+          email: req.user.email,
+          username: req.user.username,
+          name: form.name,
+          lastName: form.lastname,
+          phoneNumber: form.phone,
+          subject: form.subject,
+          location: form.location,
+          day: form.day,
+          time: form.time
+        }
       });
-      res.redirect("/");
-    }
-    const form = new Form({
-      //creating a form object from the module then turning it into a promise
-      _id: new mongoose.Types.ObjectId(),
-      userId: req.user._id,
-      email: req.user.email,
-      username: req.user.username,
-      name: req.body.name,
-      lastName: req.body.lastname,
-      phoneNumber: req.body.phone,
-      subject: req.body.subject,
-      location: req.body.city,
-      day: req.body.day,
-      time: req.body.time
+    })
+    .catch(err => {
+      res.status(500).json({
+        error: err
+      });
     });
-    form
-      .save()
-      .then(form => {
-        res.status(201).json({
-          message: "Added Form Successfully",
-          createdForm: {
-            _id: form._id,
-            name: form.name,
-            lastName: form.lastname,
-            phoneNumber: form.phone,
-            subject: form.subject,
-            location: form.location,
-            day: form.day,
-            time: form.time
-          }
-        });
-      })
-      .catch(err => {
-        res.status(500).json({
-          error: err
-        });
-      });
-  }
-);
+});
 
 function loggedIn(req, res, next) {
   if (req.user) {
     next();
   } else {
-    req.flash("error", "Please Login First to Submit The Form");
+    req.flash("error", "الرجاء تسجيل الدخول لاتمام الطلب");
     res.redirect("/user/login");
   }
 }

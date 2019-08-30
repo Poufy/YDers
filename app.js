@@ -25,7 +25,8 @@ app.use(
   session({
     secret: "cute cat",
     resave: true, // forces the session to be saved back to the store
-    saveUninitialized: true // dont save unmodified
+    saveUninitialized: true, // dont save unmodified
+    maxAge: Date.now() + 60 * 86400 * 1000 //Keep the session stored for 2 months
   })
 );
 
