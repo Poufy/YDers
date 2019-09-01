@@ -84,7 +84,6 @@ function loggedIn(req, res, next) {
   if (req.user) {
     next();
   } else {
-    req.flash("error", "الرجاء تسجيل الدخول لاتمام الطلب");
     res.send({ redirect: "/user/login" });
   }
 }

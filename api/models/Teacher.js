@@ -6,6 +6,7 @@ const teacherSchema = mongoose.Schema({
   lastName: { type: String, required: true, trimmed: true },
   subject: { type: String, required: true, trimmed: true },
   location: { type: String, required: true, trimmed: true },
+  day: { type: String, required: true, trimmed: true },
   time: { type: Number, required: true }
 });
 

@@ -17,6 +17,7 @@ router.get("/", (req, res) => {
             lastName: teacher.lastName,
             subject: teacher.subject,
             location: teacher.location,
+            day: teacher.day,
             time: teacher.time
           };
         })
@@ -39,6 +40,7 @@ router.post("/", (req, res) => {
     lastName: req.body.lastName,
     subject: req.body.subject,
     location: req.body.location,
+    day: req.body.day,
     time: req.body.time
   });
   //Making sure no duplicates are added
@@ -47,6 +49,7 @@ router.post("/", (req, res) => {
     lastName: req.body.lastName,
     subject: req.body.subject,
     location: req.body.location,
+    day: req.body.day,
     time: req.body.time
   }).then(teach => {
     if (teach == null) {
@@ -62,6 +65,7 @@ router.post("/", (req, res) => {
               lastName: teacher.lastName,
               subject: teacher.subject,
               location: teacher.location,
+              day: teacher.day,
               time: teacher.time
             }
           });
@@ -90,6 +94,7 @@ router.get("/:teacherId", (req, res) => {
         lastName: teacher.lastName,
         subject: teacher.subject,
         location: teacher.location,
+        day: teacher.day,
         time: teacher.time
       };
       res.status(200).json(response);
@@ -115,6 +120,7 @@ router.get("/location/:location", (req, res) => {
             lastName: teacher.lastName,
             subject: teacher.subject,
             location: teacher.location,
+            day: teacher.day,
             time: teacher.time
           };
         })
@@ -141,6 +147,7 @@ router.patch("/:teacherId", (req, res) => {
           lastName: req.body.lastName,
           subject: req.body.subject,
           location: req.body.location,
+          day: req.body.day,
           time: req.body.time
         }
       };
@@ -165,6 +172,7 @@ router.delete("/:teacherId", (req, res) => {
           lastName: req.body.lastName,
           subject: req.body.subject,
           location: req.body.location,
+          day: req.body.day,
           time: req.body.time
         }
       };

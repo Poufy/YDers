@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const mongoUrl = require("./config");
+const mongoUrl = require("./config/config");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -31,7 +31,7 @@ app.use(
 );
 
 // Passport Config
-require("./passport")(passport);
+require("./config/passport")(passport);
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());

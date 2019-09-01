@@ -186,16 +186,8 @@
             <img src="img/subject.png" alt="city" style="height: 50px;width: 50px">
             <div class="container">
             <div class="input-field col s12 input-form">
-                    <select id="subject-select" name="subject">
+                    <select id="subject-select" name="subject" onfocus="this.selectedIndex = -1">
                       <option value="" disabled selected> المادة</option>
-                      <option name="math">الرياضيات</option>
-                      <option value="physics">الفيزياء</option>
-                      <option value="chemistry">الكيمياء</option>
-                      <option value="biology">العلوم</option>
-                      <option value="arabic">العربية</option>
-                      <option value="english">الانجليزية</option>
-                      <option value="french">الفرنسية</option>
-                      <option value="geography">الجغرافية</option>
                     </select>
             </div>
         </div>
@@ -206,13 +198,6 @@
                 <div class="col s12" style="padding-bottom: 24px">
                         <select id="day-select" name="day">
                                 <option value="" disabled selected>اليوم</option>
-                                <option value="sunday">الاحد</option>
-                                <option value="monday">الاثنين</option>
-                                <option value="tuesday">الثلاثاء</option>
-                                <option value="wednesday">الاربعاء</option>
-                                <option value="thursday">الخميس</option>
-                                <option value="friday">الجمعة</option>
-                                <option value="saturday">السبت</option>
                         </select>
                 </div>
                 
@@ -243,12 +228,6 @@
                                 <label for="phoneNumber-input" style="color: white">رقم الجوال</label>
                               </div>
                 </div>
-                <!-- <div class="row">
-                        <div class="input-field col s4 offset-s4">
-                                <input id="phoneNumber-input" type="text" class="validate" style="color: white">
-                                <label for="phoneNumber-input" style="color: white">رقم الجوال</label>
-                              </div>
-                      </div> -->
                 </div>
                 <div class="container" style="padding-bottom: 2.5rem">
                         <button class="btn waves-effect waves-light yellow darken-3" type="submit" name="action">انشاء الطلب

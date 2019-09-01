@@ -35,32 +35,7 @@ form.addEventListener("submit", e => {
 
   if (errors.length > 0) {
     errorElement.innerText = errors.join(", ");
-  }
-  //   else {
-  //     let xhr = new XMLHttpRequest();
-  //     xhr.open("POST", "http://localhost:3000/api/forms");
-  //     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  //     xhr.onload = function() {
-  //       if (xhr.status === 201) {
-  //         alert("تم إرسال الطلب بنجاح");
-  //         //reset the form fields
-  //       }
-  //     };
-  //     xhr.send(
-  //       JSON.stringify({
-  //         name: nameInput.value,
-  //         lastName: lastNameInput.value,
-  //         phoneNumber: phoneNumberInput.value,
-  //         subject: subjectSelect.value,
-  //         location: citySelect.value,
-  //         day: daySelect.value,
-  //         time: timeSelect.value
-  //       })
-  //     );
-
-  //     //CLEAR FIELDS ADD SUCCESS MESSAGE
-  //   }
-  else {
+  } else {
     $.ajax({
       type: "POST",
       url: "/api/forms",
@@ -79,6 +54,10 @@ form.addEventListener("submit", e => {
           To fix this instead of redirecting to another page I made the post route send an object {redirect: url} to the client and I used that object to change the url */
         if (data.redirect) {
           window.location.href = data.redirect;
+        } else {
+          //reseting the form if the page is not gonna get redirected
+          //Could just refresh the page and display some pop up message
+          document.getElementById("form").reset();
         }
       }
     });
