@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const mongoUrl = require("./config/config");
+const config = require("./config/config");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -11,8 +11,9 @@ const landingPageRoute = require("./api/routes/landingPage");
 const teacherRouter = require("./api/routes/teacher");
 const formRouter = require("./api/routes/form");
 const userRouter = require("./api/routes/user");
+const adminRouter = require("./api/routes/admin");
 
-mongoose.connect(mongoUrl.url, { useNewUrlParser: true });
+mongoose.connect(config.url, { useNewUrlParser: true });
 /* MIDDLEWEAR */
 app.use(morgan("dev")); //funnel all requests through morgan for logging requests on the console
 app.use(express.static(__dirname + "/public"));
@@ -23,7 +24,7 @@ app.set("view engine", "ejs");
 // set sessions
 app.use(
   session({
-    secret: "cute cat",
+    secret: config.secret,
     resave: true, // forces the session to be saved back to the store
     saveUninitialized: true, // dont save unmodified
     maxAge: Date.now() + 60 * 86400 * 1000 //Keep the session stored for 2 months
@@ -73,6 +74,7 @@ app.use("/", landingPageRoute); //Any request to / will be handled by the landin
 app.use("/api/teachers", teacherRouter);
 app.use("/api/forms", formRouter);
 app.use("/user", userRouter);
+app.use("/admin", adminRouter);
 //if you reach this line that means no route was able to handle the request therefore we catch the error here
 app.use((req, res, next) => {
   const error = new Error("Not found");

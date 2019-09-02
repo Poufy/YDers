@@ -12,21 +12,23 @@
 
 - [x] Fix flash messages/express-validator on user signup
 
-- [ ] Put the secret and the mongo url in a seperate folder
+- [x] Put the secret and the mongo url in a seperate folder
 
 - [x] Perform the form POST request from the front-end and send the info about the logged in user along with it
 
-- [ ] Prevent duplicate signups with the same email
+- [ ] Prevent duplicate signups with the same email/username
 
 - [ ] Add Multiple passport strategies (Facebook, Google)
 
-- [ ] Consider the subject in the query
+- [x] Consider the subject/day/time in the query
 
 - [x] SIGNUP/LOGIN in order to submit the form
 
 - [ ] A seperate route for admins to be able to easily make post/delete/update requests
 
 - [ ] Add the day in the form to the query. Right now it is assumed that every teacher is free to teach at a specific time everyday.
+
+- [ ] Better looking flash messages
 
 - [ ] Better form look and polishing
 
