@@ -4,6 +4,14 @@ const mongoose = require("mongoose");
 
 const adminSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
+  name: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
   username: {
     type: String,
     required: true

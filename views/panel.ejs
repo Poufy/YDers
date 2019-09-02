@@ -1,1 +1,51 @@
-HELLO FROM PANEL
+<div class="container">
+  <h2 id="admin-name"><%= admin.name%></h2>
+  <h2 id="admin-lastname"><%= admin.lastname%></h2>
+  <h4 id="admin-subject"><%= admin.subject%></h4>
+  <h4 id="admin-city"><%= admin.location%></h4>
+
+  <form id="admin-form" action="/api/teachers" method="POST">
+    <h5>الرجاء الانتباه ان الوقت من الساعة 0 حتى الساعة 24</h5>
+    <h5>الساعة</h5>
+    <select name="time" id="admin-time-select">
+      <% for(let i = 0; i <= 24;i++) {%>
+      <option value=""><%=i%></option>
+      <% } %>
+    </select>
+    <h5>اليوم</h5>
+    <select id="admin-day-select" name="day" class="select">
+      <option value="" disabled selected>اليوم</option>
+      <option value="السبت">السبت</option>
+      <option value="الاحد">الاحد</option>
+      <option value="الاثنين">الاثنين</option>
+      <option value="الثلاثاء">الثلاثاء</option>
+      <option value="الاربعاء">الاربعاء</option>
+      <option value="الخميس">الخميس</option>
+      <option value="الجمعة">الجمعة</option>
+    </select>
+  <button
+    class="btn waves-effect waves-light yellow darken-3"
+    type="submit"
+    name="action"
+  >
+    انشاء الطلب
+    <i class="material-icons right">send</i>
+  </button>
+
+  <div class="container" style="padding-bottom: 2.5rem"></div>
+  <div class="container" style="padding-bottom: 2.5rem">
+    <p id="admin-error" class="red-text"></p>
+  </div>
+</div>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"
+/>
+<script src="/javascript/submitAdminForm.js"></script>
+<script> document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, {});
+      });;</script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>

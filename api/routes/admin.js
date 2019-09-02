@@ -20,6 +20,8 @@ router.post(
   "/register",
 
   (req, res) => {
+    const name = req.body.name;
+    const lastname = req.body.lastname;
     const username = req.body.username;
     const password = req.body.password;
     const location = req.body.location;
@@ -28,6 +30,8 @@ router.post(
 
     let newAdmin = new Admin({
       _id: new mongoose.Types.ObjectId(),
+      name: name,
+      lastname: lastname,
       username: username,
       password: password,
       location: location,
@@ -42,6 +46,8 @@ router.post(
           message: "Admin added successfully!",
           createdAdmin: {
             _id: admin._id,
+            name: admin.name,
+            lastname: admin.lastname,
             username: admin.username,
             password: admin.password,
             location: admin.location,
@@ -66,7 +72,7 @@ router.get("/login", (req, res) => {
 
 router.get("/panel", ensureAuthenticated, (req, res) => {
   //eval(locus);
-  res.render("panel");
+  res.render("panel", { admin: req.user });
 });
 
 //Login Process

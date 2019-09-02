@@ -15,21 +15,21 @@ document.addEventListener("DOMContentLoaded", function() {
         teacher.subject.toLowerCase()
       );
       document.getElementById("math_header").innerHTML =
-        getOccurances(subjectsArray, "math") || 0; //In case the subject does not exist in the map
+        getOccurances(subjectsArray, "الرياضيات") || 0; //In case the subject does not exist in the map
       document.getElementById("chem_header").innerHTML =
-        getOccurances(subjectsArray, "chemistry") || 0;
+        getOccurances(subjectsArray, "الكيمياء") || 0;
       document.getElementById("phys_header").innerHTML =
-        getOccurances(subjectsArray, "physics") || 0;
+        getOccurances(subjectsArray, "الفيزياء") || 0;
       document.getElementById("bio_header").innerHTML =
-        getOccurances(subjectsArray, "biology") || 0;
+        getOccurances(subjectsArray, "العلوم") || 0;
       document.getElementById("ar_header").innerHTML =
-        getOccurances(subjectsArray, "arabic") || 0;
+        getOccurances(subjectsArray, "العربية") || 0;
       document.getElementById("eng_header").innerHTML =
-        getOccurances(subjectsArray, "english") || 0;
+        getOccurances(subjectsArray, "الانجليزية") || 0;
       document.getElementById("fr_header").innerHTML =
-        getOccurances(subjectsArray, "french") || 0;
+        getOccurances(subjectsArray, "الفرنسية") || 0;
       document.getElementById("geo_header").innerHTML =
-        getOccurances(subjectsArray, "geography") || 0;
+        getOccurances(subjectsArray, "الجغرافية") || 0;
     }
   };
   //call send

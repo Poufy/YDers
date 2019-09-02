@@ -30,6 +30,10 @@
 
 - [ ] Better looking flash messages
 
+- [ ] Admin table of current avaiable times and requests available
+
+- [ ] Fix materializer error/Fail get error after admin/form submission
+
 - [ ] Better form look and polishing
 
 # Problems
