@@ -80,6 +80,16 @@ router.post("/", loggedIn, (req, res, next) => {
     });
 });
 
+router.delete("/:formId", (req, res, next) => {
+  //Replace the matching universities with the body sent on the request
+  Form.deleteOne({ _id: req.params.formId })
+    .exec()
+    .then(res.status(200))
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 function loggedIn(req, res, next) {
   if (req.user) {
     next();

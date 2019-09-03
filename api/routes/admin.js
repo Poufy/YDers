@@ -5,6 +5,8 @@ const { check, validationResult } = require("express-validator");
 const passport = require("passport");
 const Admin = require("../models/Admin");
 const locus = require("locus");
+const Teacher = require("../models/Teacher");
+const Form = require("../models/Form");
 
 // router.post("/register", (req, res) => {
 //   let newAdmin = new Admin({
@@ -71,8 +73,56 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/panel", ensureAuthenticated, (req, res) => {
+  //If we wanted to only show the specific times
+  //Pass all entries that match this admin in terms of subject/city/time
+  /*We need the forms only with the times that this admin has submitted but these times are stored in Teacher entries which is unrelated to the admin
+  but the admin name and teacher name are matching so we can extract the times the admin submitted from the teacher entries
+  */
+  // let timesArray;
+  // Teacher.find({ name: req.user.name, lastName: req.user.lastname })
+  //   .exec()
+  //   .then(teachers => {
+  //     const response = {
+  //       teachers: teachers.map(teacher => teacher.time)
+  //     };
+  //     timesArray = response.teachers;
+  //   })
+  //   .catch(err => {
+  //     console.log("Failed to get teachers");
+  //   });
   //eval(locus);
-  res.render("panel", { admin: req.user });
+  //After exctracting the times now we need the forms that match the times/subject/city
+
+  Form.find({
+    subject: req.user.subject,
+    city: req.user.city
+  })
+    .exec()
+    .then(forms => {
+      const response = {
+        forms: forms.map(form => {
+          return {
+            _id: form._id,
+            userId: form.userId,
+            name: form.name,
+            lastName: form.lastName,
+            username: form.username,
+            email: form.email,
+            phoneNumber: form.phoneNumber,
+            subject: form.subject,
+            location: form.location,
+            day: form.day,
+            time: form.time
+          };
+        })
+      };
+      //eval(locus);
+      res.render("panel", { admin: req.user, formObjects: response });
+      // res.status(200).json(response);
+    })
+    .catch(err => {
+      res.render("panel", { admin: req.user, forms: {} });
+    });
 });
 
 //Login Process

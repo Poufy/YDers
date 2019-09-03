@@ -24,7 +24,7 @@
 
 - [x] SIGNUP/LOGIN in order to submit the form
 
-- [ ] A seperate route for admins to be able to easily make post/delete/update requests
+- [ ] A seperate route for admins to be able to easily make post/delete requests
 
 - [ ] Add the day in the form to the query. Right now it is assumed that every teacher is free to teach at a specific time everyday.
 
@@ -71,3 +71,11 @@ Saving Inputs When Logged Out:
     	- Find some way to store the current session even when not logged in and reload the session when user logs back in.
 
     	- Just do the logging in in the front-end using an ajax request without having to reload the page.
+
+Displaying forms to the admins that only match their available times and day:
+
+    Possible Solutions:
+
+    	- Using the Teacher model find all the times and days that admins entered(name and lastname of teachers and admins match). However, this will become very complex with larger data.
+
+    	- Filtering the data in the front-end on the admin panel depending on the times and day he previously entered which could be stored in an array alongside the admin object. For this we need to make an update route to the admin and add two fields for an array of days and an array of times. And some fields for each admin to be able to update their arrays easily.
