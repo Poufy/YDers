@@ -84,7 +84,7 @@ router.delete("/:formId", (req, res, next) => {
   //Replace the matching universities with the body sent on the request
   Form.deleteOne({ _id: req.params.formId })
     .exec()
-    .then(res.status(200))
+    .then(console.log("Deleted Form"))
     .catch(err => {
       console.log(err);
     });

@@ -1,8 +1,9 @@
 <div class="container">
-  <h2 id="admin-name center"><%= admin.name%></h2>
+  <h2 id="admin-name"><%= admin.name%></h2>
   <h2 id="admin-lastname"><%= admin.lastname%></h2>
   <h4 id="admin-subject"><%= admin.subject%></h4>
   <h4 id="admin-city"><%= admin.location%></h4>
+  <h4><%=teacherObjects.teachers[0].name%></h4>
   <form id="admin-form" action="/api/teachers" method="POST">
     <h5>الرجاء الانتباه ان الوقت من الساعة 0 حتى الساعة 24</h5>
     <h5>الساعة</h5>
@@ -38,33 +39,6 @@
     <p id="admin-error" class="red-text"></p>
   </div>
 
-  <!-- <form id="admin-complete-form" style="margin-top: 24px">
-    <div class="center">
-      <input
-        id="form-complete-id"
-        type="text"
-        class="validate"
-        style="color: rgb(19, 201, 214)"
-        name="id"
-        placeholder="Example: 5d6d1f0cd0466803f1asd25b"
-      />
-      <label for="form-complete-id" style="color: black">رقم الطلب</label>
-    </div>
-
-    <div style="padding-bottom: 2.5rem">
-      <p id="admin-complete-error" class="red-text"></p>
-    </div>
-
-    <button
-      class="btn waves-effect waves-light yellow darken-3"
-      type="submit"
-      name="action"
-      style="margin-bottom: 24px"
-      id="completeButton"
-    >
-      انهاء الطلب <i class="material-icons right">send</i>
-    </button>
-  </form> -->
   <table class="responsive-table" style="margin-bottom: 36px">
     <thead>
       <tr dir="rtl" lang="ar">
@@ -100,6 +74,37 @@
       <% } %>
     </tbody>
   </table>
+
+  <h4>اوقاتي المتاحة</h4>
+  <table class="responsive-table" style="margin-bottom: 36px">
+    <thead>
+      <tr dir="rtl" lang="ar">
+        <th>المادة</th>
+        <th>اليوم</th>
+        <th>الوقت</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% for(var i=0; i < teacherObjects.teachers.length; i++) { %>
+      <tr lang="ar">
+        <td><%= teacherObjects.teachers[i].subject %></td>
+        <td><%= teacherObjects.teachers[i].day %></td>
+        <td><%= teacherObjects.teachers[i].time %></td>
+        <td>
+          <button
+            class="btn-floating btn-large waves-effect waves-light red"
+            id="<%= teacherObjects.teachers[i]._id%>"
+            onclick="deleteTeacher(id)"
+          >
+            الغاء
+          </button>
+        </td>
+        <!--Setting the id of the button to the id of the form document-->
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
 </div>
 <link
   rel="stylesheet"
@@ -108,6 +113,13 @@
 <script>
   function completeForm(id) {
     $.ajax({ url: `/api/forms/${id}`, method: "DELETE" })
+      .then(location.reload()) //Refresh the page after completing the item
+      .catch(err => {
+        console.log("did not work");
+      });
+  }
+  function deleteTeacher(id) {
+    $.ajax({ url: `/api/teachers/${id}`, method: "DELETE" })
       .then(location.reload()) //Refresh the page after completing the item
       .catch(err => {
         console.log("did not work");

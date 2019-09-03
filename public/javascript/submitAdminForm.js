@@ -50,7 +50,7 @@ adminForm.addEventListener("submit", e => {
       day: selectedDay,
       time: selectedTime
     });
-    console.log(city.innerHTML);
+    // console.log(city.innerHTML);
     $.ajax({
       type: "POST",
       url: "/api/teachers",

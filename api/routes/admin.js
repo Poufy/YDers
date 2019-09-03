@@ -1,22 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const { check, validationResult } = require("express-validator");
 const passport = require("passport");
 const Admin = require("../models/Admin");
 const locus = require("locus");
 const Teacher = require("../models/Teacher");
 const Form = require("../models/Form");
-
-// router.post("/register", (req, res) => {
-//   let newAdmin = new Admin({
-//     username: req.body.username,
-//     password: req.body.password,
-//     location: req.body.location,
-//     subject: req.body.section
-//   });
-
-// });
 
 router.post(
   "/register",
@@ -73,33 +62,18 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/panel", ensureAuthenticated, (req, res) => {
-  //If we wanted to only show the specific times
-  //Pass all entries that match this admin in terms of subject/city/time
-  /*We need the forms only with the times that this admin has submitted but these times are stored in Teacher entries which is unrelated to the admin
-  but the admin name and teacher name are matching so we can extract the times the admin submitted from the teacher entries
-  */
-  // let timesArray;
-  // Teacher.find({ name: req.user.name, lastName: req.user.lastname })
-  //   .exec()
-  //   .then(teachers => {
-  //     const response = {
-  //       teachers: teachers.map(teacher => teacher.time)
-  //     };
-  //     timesArray = response.teachers;
-  //   })
-  //   .catch(err => {
-  //     console.log("Failed to get teachers");
-  //   });
-  //eval(locus);
-  //After exctracting the times now we need the forms that match the times/subject/city
-
+  /*Nesting the promises in order to perform two database queries one to get the forms and 
+  one for the teacher entries and sending both over to the panel
+   */
+  let formResponse = {};
+  let teacherResponse = {};
   Form.find({
     subject: req.user.subject,
     city: req.user.city
   })
     .exec()
     .then(forms => {
-      const response = {
+      formResponse = {
         forms: forms.map(form => {
           return {
             _id: form._id,
@@ -116,9 +90,34 @@ router.get("/panel", ensureAuthenticated, (req, res) => {
           };
         })
       };
-      //eval(locus);
-      res.render("panel", { admin: req.user, formObjects: response });
-      // res.status(200).json(response);
+
+      Teacher.find()
+        .exec()
+        .then(teachers => {
+          teacherResponse = {
+            teachersCount: teachers.length,
+            teachers: teachers.map(teacher => {
+              return {
+                _id: teacher._id,
+                name: teacher.name,
+                lastName: teacher.lastName,
+                subject: teacher.subject,
+                location: teacher.location,
+                day: teacher.day,
+                time: teacher.time
+              };
+            })
+          };
+          // eval(locus);
+          res.render("panel", {
+            admin: req.user,
+            formObjects: formResponse,
+            teacherObjects: teacherResponse
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     })
     .catch(err => {
       res.render("panel", { admin: req.user, forms: {} });

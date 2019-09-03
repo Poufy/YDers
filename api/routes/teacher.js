@@ -159,29 +159,13 @@ router.patch("/:teacherId", (req, res) => {
 });
 
 //DELETE REQUEST
-router.delete("/:teacherId", (req, res) => {
+router.delete("/:teacherId", (req, res, next) => {
   //Replace the matching universities with the body sent on the request
   Teacher.deleteOne({ _id: req.params.teacherId })
     .exec()
-    .then(uni => {
-      const response = {
-        message: "Teacher Entry Deleted!",
-        teacher: {
-          _id: req.body._id,
-          name: req.body.name,
-          lastName: req.body.lastName,
-          subject: req.body.subject,
-          location: req.body.location,
-          day: req.body.day,
-          time: req.body.time
-        }
-      };
-      res.status(200).json(response);
-    })
+    .then(console.log("Deleted Teacher"))
     .catch(err => {
-      res.status(500).json({
-        error: err
-      });
+      console.log(err);
     });
 });
 module.exports = router;
