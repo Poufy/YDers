@@ -3,7 +3,6 @@
   <h2 id="admin-lastname"><%= admin.lastname%></h2>
   <h4 id="admin-subject"><%= admin.subject%></h4>
   <h4 id="admin-city"><%= admin.location%></h4>
-  <h5><%= formObjects.forms[0].name%></h5>
   <form id="admin-form" action="/api/teachers" method="POST">
     <h5>الرجاء الانتباه ان الوقت من الساعة 0 حتى الساعة 24</h5>
     <h5>الساعة</h5>
@@ -39,7 +38,7 @@
     <p id="admin-error" class="red-text"></p>
   </div>
 
-  <form id="admin-complete-form" style="margin-top: 24px">
+  <!-- <form id="admin-complete-form" style="margin-top: 24px">
     <div class="center">
       <input
         id="form-complete-id"
@@ -65,11 +64,10 @@
     >
       انهاء الطلب <i class="material-icons right">send</i>
     </button>
-  </form>
+  </form> -->
   <table class="responsive-table" style="margin-bottom: 36px">
     <thead>
       <tr dir="rtl" lang="ar">
-        <th>رقم الملف</th>
         <th>الاسم</th>
         <th>الكنية</th>
         <th>البريد</th>
@@ -82,13 +80,22 @@
     <tbody>
       <% for(var i=0; i < formObjects.forms.length; i++) { %>
       <tr lang="ar">
-        <td><%= formObjects.forms[i]._id %></td>
         <td><%= formObjects.forms[i].name %></td>
         <td><%= formObjects.forms[i].lastName %></td>
         <td><%= formObjects.forms[i].email %></td>
         <td><%= formObjects.forms[i].phoneNumber %></td>
         <td><%= formObjects.forms[i].day %></td>
         <td><%= formObjects.forms[i].time%></td>
+        <td>
+          <button
+            class="btn-floating btn-large waves-effect waves-light green"
+            id="<%= formObjects.forms[i]._id%>"
+            onclick="completeForm(id)"
+          >
+            تم
+          </button>
+        </td>
+        <!--Setting the id of the button to the id of the form document-->
       </tr>
       <% } %>
     </tbody>
@@ -98,6 +105,15 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"
 />
+<script>
+  function completeForm(id) {
+    $.ajax({ url: `/api/forms/${id}`, method: "DELETE" })
+      .then(location.reload()) //Refresh the page after completing the item
+      .catch(err => {
+        console.log("did not work");
+      });
+  }
+</script>
 <script src="/javascript/submitAdminForm.js"></script>
 <script src="/javascript/completeAdminForm.js"></script>
 

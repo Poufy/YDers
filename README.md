@@ -24,9 +24,9 @@
 
 - [x] SIGNUP/LOGIN in order to submit the form
 
-- [ ] A seperate route for admins to be able to easily make post/delete requests
+- [x] A seperate route for admins to be able to easily make post/delete requests
 
-- [ ] Add the day in the form to the query. Right now it is assumed that every teacher is free to teach at a specific time everyday.
+- [x] Add the day in the form to the query. Right now it is assumed that every teacher is free to teach at a specific time everyday.
 
 - [ ] Better looking flash messages
 
