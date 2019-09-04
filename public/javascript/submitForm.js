@@ -58,6 +58,7 @@ form.addEventListener("submit", e => {
           //reseting the form if the page is not gonna get redirected
           //Could just refresh the page and display some pop up message
           document.getElementById("form").reset();
+          alert("تم ارسال طلبك بنجاح. سيتم التواصل معك خلال 24 ساعة");
         }
       }
     });

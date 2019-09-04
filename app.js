@@ -27,7 +27,7 @@ app.use(
     secret: config.secret,
     resave: true, // forces the session to be saved back to the store
     saveUninitialized: true, // dont save unmodified
-    maxAge: Date.now() + 60 * 86400 * 1000 //Keep the session stored for 2 months
+    maxAge: Date.now() + 30 * 86400 * 1000 //Keep the session stored for 2 months
   })
 );
 
@@ -75,6 +75,7 @@ app.use("/api/teachers", teacherRouter);
 app.use("/api/forms", formRouter);
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
+
 //if you reach this line that means no route was able to handle the request therefore we catch the error here
 app.use((req, res, next) => {
   const error = new Error("Not found");
@@ -84,11 +85,7 @@ app.use((req, res, next) => {
 });
 
 app.use((error, req, res, next) => {
-  res.status(error || 500);
-  res.json({
-    error: {
-      message: error.message
-    }
-  });
+  res.status(error.status || 500);
+  res.render("error", { errorStatus: error.status });
 });
 module.exports = app;

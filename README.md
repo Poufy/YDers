@@ -16,11 +16,13 @@
 
 - [x] Perform the form POST request from the front-end and send the info about the logged in user along with it
 
-- [ ] Prevent duplicate signups with the same email/username
+- [ ] Prevent duplicate signups with the same username
 
 - [ ] Add Multiple passport strategies (Facebook, Google)
 
 - [x] Consider the subject/day/time in the query
+
+- [ ] Cool looking 404 error page
 
 - [x] SIGNUP/LOGIN in order to submit the form
 

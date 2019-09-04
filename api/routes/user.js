@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const passport = require("passport");
+const locus = require("locus");
 //Bring in the user module
 let User = require("../models/User");
 
@@ -43,6 +44,11 @@ router.post(
       const username = req.body.username;
       const password = req.body.password;
 
+      //Preventing signing up with duplicate usernames
+      let userSearch = User.findOne({ username: username })
+        .then()
+        .catch();
+      eval(locus);
       let newUser = new User({
         email: email,
         username: username,
@@ -72,6 +78,11 @@ router.post(
   }
 );
 
+// router.get("/", (req, res) => {
+//   res.status(500).json({
+//     error: "Not Allowed"
+//   });
+// });
 //Login Form
 router.get("/login", (req, res) => {
   res.render("login");
@@ -90,5 +101,9 @@ router.post("/login", (req, res, next) => {
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
+});
+
+router.get("*", function(req, res) {
+  res.render("error");
 });
 module.exports = router;
