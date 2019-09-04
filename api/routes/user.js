@@ -45,44 +45,49 @@ router.post(
       const password = req.body.password;
 
       //Preventing signing up with duplicate usernames
-      let userSearch = User.findOne({ username: username })
-        .then()
-        .catch();
-      eval(locus);
-      let newUser = new User({
-        email: email,
-        username: username,
-        password: password
-      });
+      User.findOne({ username: username })
+        .then(user => {
+          if (user) {
+            // eval(locus);
+            req.flash("error", "اسم المستخدم قيد الاستعمال");
+            res.redirect("/user/register");
+          } else {
+            let newUser = new User({
+              email: email,
+              username: username,
+              password: password
+            });
 
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) {
-            console.log(err);
+            bcrypt.genSalt(10, (err, salt) => {
+              bcrypt.hash(newUser.password, salt, (err, hash) => {
+                if (err) {
+                  console.log(err);
+                }
+                newUser.password = hash;
+                newUser.save(err => {
+                  if (err) {
+                    console.log("err occured");
+                    req.flash("wrong");
+                    return;
+                  } else {
+                    console.log("success");
+                    req.flash("success", "لقد تم تسجيل الحساب بنجاح");
+                    res.redirect("/user/login");
+                  }
+                });
+              });
+            });
           }
-          newUser.password = hash;
-          newUser.save(err => {
-            if (err) {
-              console.log("err occured");
-              req.flash("wrong");
-              return;
-            } else {
-              console.log("success");
-              req.flash("success", "You are now registered and you can login");
-              res.redirect("/user/login");
-            }
-          });
+        })
+        .catch(err => {
+          req.flash(err);
+          res.redirect("user/register");
         });
-      });
+      // eval(locus);
     }
   }
 );
 
-// router.get("/", (req, res) => {
-//   res.status(500).json({
-//     error: "Not Allowed"
-//   });
-// });
 //Login Form
 router.get("/login", (req, res) => {
   res.render("login");

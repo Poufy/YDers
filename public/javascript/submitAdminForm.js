@@ -10,7 +10,7 @@ const error = document.getElementById("admin-error");
 adminForm.addEventListener("submit", e => {
   e.preventDefault();
   let selectedDay = daySelect.options[daySelect.selectedIndex].value; //Getting the value of the selected option
-  let selectedTime = timeSelect.options[timeSelect.selectedIndex].text;
+  let selectedTime = timeSelect.options[timeSelect.selectedIndex].value;
   let errors = [];
   //   if (citySelect.value === "" || citySelect.value == null) {
   //     errors.push("يجب اختيار المدينة");
@@ -50,7 +50,6 @@ adminForm.addEventListener("submit", e => {
       day: selectedDay,
       time: selectedTime
     });
-    // console.log(city.innerHTML);
     $.ajax({
       type: "POST",
       url: "/api/teachers",

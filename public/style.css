@@ -15,16 +15,30 @@
 }
 
 .secondaryColor {
-  background-color: #00b0ff;
+  background-color: #5900ff;
+}
+
+.secondaryColorLight {
+  background-color: #6a1bfd;
 }
 
 .primaryTextColor {
   color: black;
 }
 .secondaryTextColor {
-  color: #00b0ff;
+  color: #5900ff;
 }
 
+.secondaryTextColorLight {
+  color: #6a1bfd;
+}
+
+.success {
+  color: green;
+}
+.error {
+  color: red;
+}
 .styledHeader {
   font-family: "Roboto Slab", sans-serif;
   font-weight: bold;
@@ -50,7 +64,7 @@
 
 /*Overring the indicator color*/
 .slider .indicators .indicator-item.active {
-  background-color: #00b0ff;
+  background-color: #6a1bfd;
 }
 
 .slider .indicators .indicator-item {
@@ -64,5 +78,3 @@
 .input-form {
   padding-bottom: 24px;
 }
-
-

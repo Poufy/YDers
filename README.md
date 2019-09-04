@@ -22,6 +22,8 @@
 
 - [x] Consider the subject/day/time in the query
 
+- [ ] A way to automatically restart the server if it goes down incase of disconnection
+
 - [ ] Cool looking 404 error page
 
 - [x] SIGNUP/LOGIN in order to submit the form

@@ -1,12 +1,17 @@
 <!-- This requires express-messages in order to work. The flash error message is designed here and is used in other ejs files -->
 <!--Use the type in order to color them differently the stylesheet file-->
+<head>
+  <link rel="stylesheet" href="../style.css" />
+</head>
 <div id="messages">
   <% Object.keys(messages).forEach(function (type) { %>
   <!-- <ul class="<%= type %>"> -->
-  <% messages[type].forEach(function (message) { %>
-  <!-- <li><%= message %></li> -->
-  <div class="secondaryColor darken-2 red-text center-align">
-    <%= message %>
+  <div class="<%= type %>">
+    <% messages[type].forEach(function (message) { %>
+    <!-- <li><%= message %></li> -->
+    <div class="center-align">
+      <%= message %>
+    </div>
   </div>
   <% }) %>
   <!-- </ul> -->

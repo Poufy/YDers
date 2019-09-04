@@ -1,18 +1,31 @@
 <div class="container">
-  <h2 id="admin-name"><%= admin.name%></h2>
-  <h2 id="admin-lastname"><%= admin.lastname%></h2>
-  <h4 id="admin-subject"><%= admin.subject%></h4>
-  <h4 id="admin-city"><%= admin.location%></h4>
-  <h4><%=teacherObjects.teachers[0].name%></h4>
+  <div style="clear: both">
+    <h4 id="admin-name" class="center"><%= admin.name%></h2>
+    <h5 id="admin-lastname" class="center"><%= admin.lastname%></h2>
+      <h4 id="admin-city" style="visibility: hidden;"><%= admin.location%></h4>
+
+      <div class="section"></div>
+  </div>
+  <hr />
+  <h4 id="admin-subject" class="center"><%= admin.subject%></h4>
+  <div class="section"></div>
+  <hr />
   <form id="admin-form" action="/api/teachers" method="POST">
-    <h5>الرجاء الانتباه ان الوقت من الساعة 0 حتى الساعة 24</h5>
-    <h5>الساعة</h5>
+    <p class="center red-text">الرجاء الانتباه ان الوقت من الساعة 0 حتى الساعة 24</p>
+    <h5 class="center">الساعة</h5>
     <select name="time" id="admin-time-select">
-      <% for(let i = 0; i <= 24;i++) {%>
-      <option value=""><%=i%></option>
+        <option value="0">0 منتصف الليل</option>
+
+      <% for(let i = 1; i <= 11;i++) {%>
+      <option value="<%=i%>"><%=i%> صباحا</option>
       <% } %>
+      <option value="12">12 ظهرا</option>
+      <% for(let i = 13; i <= 23;i++) {%>
+        <option value="<%=i%>"><%=i-12%> مساء</option>
+        <% } %>
     </select>
-    <h5>اليوم</h5>
+    <div class="section"></div>
+    <h5 class="center">اليوم</h5>
     <select id="admin-day-select" name="day" class="select">
       <option value="" disabled selected>اليوم</option>
       <option value="السبت">السبت</option>
@@ -23,8 +36,9 @@
       <option value="الخميس">الخميس</option>
       <option value="الجمعة">الجمعة</option>
     </select>
+    <div class="section"></div>
     <button
-      class="btn waves-effect waves-light yellow darken-3"
+      class="btn waves-effect waves-light secondaryColor darken-3"
       type="submit"
       name="action"
       style="margin-bottom: 24px"
@@ -33,11 +47,14 @@
       <i class="material-icons right">send</i>
     </button>
     <hr />
+    <div class="section"></div>
+    <div class="section"></div>
   </form>
 
   <div style="padding-bottom: 2.5rem">
     <p id="admin-error" class="red-text"></p>
   </div>
+  <h4 class="center">الطلبات</h4>
 
   <table class="responsive-table" style="margin-bottom: 36px">
     <thead>
@@ -74,8 +91,9 @@
       <% } %>
     </tbody>
   </table>
+  <div class="section"></div>
 
-  <h4>اوقاتي المتاحة</h4>
+  <h4 class="center">اوقاتي المتاحة</h4>
   <table class="responsive-table" style="margin-bottom: 36px">
     <thead>
       <tr dir="rtl" lang="ar">
@@ -105,11 +123,23 @@
       <% } %>
     </tbody>
   </table>
+  <div class="section"></div>
+  <div class="section"></div>
 </div>
+<% include partials/footer %>
+
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"
 />
+<link
+  rel="stylesheet"
+  href="../style.css"
+/>
+<link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
 <script>
   function completeForm(id) {
     $.ajax({ url: `/api/forms/${id}`, method: "DELETE" })
