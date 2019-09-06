@@ -3,7 +3,6 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 const Admin = require("../models/Admin");
-const locus = require("locus");
 const Teacher = require("../models/Teacher");
 const Form = require("../models/Form");
 
@@ -56,7 +55,7 @@ router.post(
 );
 
 //Login Form
-//which is /admin/login
+//Equevilant to /admin/login
 router.get("/login", (req, res) => {
   res.render("adminLogin");
 });
@@ -140,7 +139,6 @@ router.get("/logout", (req, res) => {
 });
 
 function ensureAuthenticated(req, res, next) {
-  // eval(locus);
   if (req.isAuthenticated()) return next();
   else {
     res.redirect("/admin/login");

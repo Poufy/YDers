@@ -3,8 +3,6 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const passport = require("passport");
-const locus = require("locus");
-//Bring in the user module
 let User = require("../models/User");
 
 // Register Form
@@ -23,7 +21,7 @@ router.post(
       //This is a custom checker that checks if both fields are the same
       (value, { req, loc, path }) => {
         if (value !== req.body.confirmPassword) {
-          // trow error if passwords do not match
+          // throw error if passwords do not match
           throw new Error("Passwords don't match");
         } else {
           return value;
@@ -48,7 +46,6 @@ router.post(
       User.findOne({ username: username })
         .then(user => {
           if (user) {
-            // eval(locus);
             req.flash("error", "اسم المستخدم قيد الاستعمال");
             res.redirect("/user/register");
           } else {
@@ -83,7 +80,6 @@ router.post(
           req.flash(err);
           res.redirect("user/register");
         });
-      // eval(locus);
     }
   }
 );

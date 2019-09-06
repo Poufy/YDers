@@ -1,279 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!--Import Google Icon Font-->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!--Import materialize.css-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
 
     <link rel="stylesheet" href="style.css" />
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Arabic Font-->
+    <link href="https://fonts.googleapis.com/css?family=Amiri:700&display=swap&subset=arabic" rel="stylesheet">
   </head>
-  <body>
+
+<body>
     <div class="scrollspy" id="home">
-      <!-- HEADER -->
-      <% include partials/header %>
-      <!-- END OF HEADER -->
-      <!-- START OF SLIDER-->
-      <div class="slider fullscreen seperator">
-        <ul class="slides">
-          <li>
-              
-            <img class="responsive-img" src="img/slider2.jpg" alt="lmao" />
-            <div class="caption center-align">
-              <h3 class="primaryTextColor">شعار يقشعر البدن</h3>
-              <h5 class="light primaryTextColor hide-on-small-only">
+        <!-- HEADER -->
+        <% include partials/header %>
+            <!-- END OF HEADER -->
+            <!-- START OF SLIDER-->
+            <div class="slider fullscreen seperator">
+                <ul class="slides">
+                    <li>
+
+                        <img class="responsive-img" src="img/slider2.jpg" alt="lmao" />
+                        <div class="caption center-align">
+                            <h3 class="primaryTextColor">شعار يقشعر البدن</h3>
+                            <h5 class="light primaryTextColor hide-on-small-only">
                 الخدمات التي نوفرها
               </h5>
-              <a
-                href="#contact"
-                class="btn secondaryColor accent-3"
-                style="margin-top: 20px"
-              >
+                            <a href="#contact" class="btn secondaryColor accent-3" style="margin-top: 20px">
                 تواصل معنا
               </a>
-            </div>
-          </li>
-          <li>
-            <img src="img/slider1.jpg" alt="lmao" />
-            <div class="caption right-align primaryTextColor">
-              <h3 class="primaryTextColor">اهدافنا</h3>
-              <h5 class="light primaryTextColor hide-on-small-only">
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/slider1.jpg" alt="lmao" />
+                        <div class="caption right-align primaryTextColor">
+                            <h3 class="primaryTextColor">اهدافنا</h3>
+                            <h5 class="light primaryTextColor hide-on-small-only">
                 وحدة حرية اشتراكية
               </h5>
-              <a
-                href="#contact"
-                class="btn secondaryColor accent-3"
-                style=" margin-top: 20px"
-              >
+                            <a href="#contact" class="btn secondaryColor accent-3" style=" margin-top: 20px">
                 قم بالتسجيل
               </a>
-            </div>
-          </li>
-          <li>
-            <img class="img3" src="img/slider3.jpg" alt="lmao" />
-            <div class="caption left-align primaryTextColor">
-              <h3 class="primaryTextColor">صفاتنا</h3>
-              <h5 class="light primaryTextColor hide-on-small-only">
+                        </div>
+                    </li>
+                    <li>
+                        <img class="img3" src="img/slider3.jpg" alt="lmao" />
+                        <div class="caption left-align primaryTextColor">
+                            <h3 class="primaryTextColor">صفاتنا</h3>
+                            <h5 class="light primaryTextColor hide-on-small-only">
                 ما شاء الله علينا كلنا حبابين ونسعى للافضل
               </h5>
-              <a
-                href="#about"
-                class="btn secondaryColor accent-3"
-                style=" margin-top: 20px"
-              >
+                            <a href="#about" class="btn secondaryColor accent-3" style=" margin-top: 20px">
                 المزيد
               </a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-          </li>
-        </ul>
-      </div>
-      <!-- END OF SLIDER-->
-      <!--CARD PANELS OF AVAIABLE TEACHERS-->
-      <div class="content">
-      <section
-        class="section section-follow secondaryColor darken2 white-text center seperator scrollspy"
-        id="teachers"
-      >
-      <h4 class="center styledHeader" style="padding-bottom: 18px">
+            <!-- END OF SLIDER-->
+            <!--CARD PANELS OF AVAIABLE TEACHERS-->
+            <div class="content">
+                <section class="section section-follow secondaryColor darken2 white-text center seperator scrollspy" id="teachers">
+                    <h4 class="center styledHeader" style="padding-bottom: 18px">
 اساتذتنا          </h4>
-      <div class="container">
-            <div class="row">
-                <div class="col s6 m3">
-                    <div class="card-panel secondaryColorLight lighten-3">
-                        <img src="img/mathIcon2.png" alt="Math" style="height: 60px;width:60px"><br>
-                        <h5>الرياضيات</h5>
-                        <div class="mathTeachers" style="font-weight: 500;">
-                            <h5 id="math_header">0</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6 m3">
-                        <div class="card-panel secondaryColorLight lighten-1">
-                            <img src="img/chemIcon.png" alt="Math" style="height: 60px;width:60px"><br>
-                            <h5>الكيمياء</h5>
-                            <div class="mathTeachers" style="font-weight: 500;">
-                                    <h5 id="chem_header">0</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m3">
-                            <div class="card-panel secondaryColorLight lighten-1">
-                                <img src="img/physIcon2.png" alt="Math" style="height: 60px;width:60px"><br>
-                                <h5>الفيزياء</h5>
-                                <div class="mathTeachers" style="font-weight: 500;">
-                                        <h5 id="phys_header">0</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s6 m3">
-                                <div class="card-panel secondaryColorLight lighten-1">
-                                    <img src="img/bioIcon2.png" alt="Math" style="height: 60px;width:60px"><br>
-                                    <h5>العلوم</h5>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col s6 m3">
+                                <div class="card-panel secondaryColorLight lighten-3">
+                                    <img src="img/mathIcon2.png" alt="Math" style="height: 60px;width:60px">
+                                    <br>
+                                    <h5>الرياضيات</h5>
                                     <div class="mathTeachers" style="font-weight: 500;">
-                                            <h5 id="bio_header">0</h5>
-                                    </div>
-                                </div>
-                            </div>
-            </div>
-            <div class="row">
-                    <div class="col s6 m3">
-                        <div class="card-panel secondaryColorLight lighten-1">
-                            <img src="img/arIcon.png" alt="Math" style="height: 60px;width:60px"><br>
-                            <h5>العربية</h5>
-                            <div class="mathTeachers" style="font-weight: 500;">
-                                    <h5 id="ar_header">0</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m3">
-                            <div class="card-panel secondaryColorLight lighten-1">
-                                <img src="img/engIcon2.png" alt="Math" style="height: 60px;width:60px"><br>
-                                <h5>الانجليزية</h5>
-                                <div class="mathTeachers" style="font-weight: 500;">
-                                        <h5 id="eng_header">0</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s6 m3">
-                                <div class="card-panel secondaryColorLight lighten-1">
-                                    <img src="img/frenIcon.png" alt="Math" style="height: 60px;width:60px"><br>
-                                    <h5>الفرنسية</h5>
-                                    <div class="mathTeachers" style="font-weight: 500;">
-                                            <h5 id="fr_header">0</h5>
+                                        <h5 id="math_header">0</h5>
                                     </div>
                                 </div>
                             </div>
                             <div class="col s6 m3">
-                                    <div class="card-panel secondaryColorLight lighten-1">
-                                        <img src="img/geoIcon.png" alt="Math" style="height: 60px;width:60px"><br>
-                                        <h5>الجغرافية</h5>
-                                        <div class="mathTeachers" style="font-weight: 500;">
-                                                <h5 id="geo_header">0</h5>
-                                        </div>
+                                <div class="card-panel secondaryColorLight lighten-1">
+                                    <img src="img/chemIcon.png" alt="Math" style="height: 60px;width:60px">
+                                    <br>
+                                    <h5>الكيمياء</h5>
+                                    <div class="mathTeachers" style="font-weight: 500;">
+                                        <h5 id="chem_header">0</h5>
                                     </div>
                                 </div>
-                </div>
-          </div>
-        </section>
-        <!--START OF FORM-->
-        <section class="section section-follow secondaryColor darken2 white-text center seperator scrollspy" id="apply">
-            <form id="form" action="/api/forms" method="POST">
-                <img src="img/form.png" style="width:50px;height:50px">
-            <h4 class="titles">ملئ الطلب</h4>
-            <hr style="width: 50%;margin:auto">
-                    <h5 class="center titles">المدينة</h5>
-                    <img src="img/city.png" alt="City" style="height: 50px;width: 50px">
-            <div class="container">
-            <div class="input-field col s12 input-form">
-                    <select id="city-select" name="city">
-                      <option value="" disabled selected>اختر مدينتك</option>
-                      <option value="dms">دمشق</option>
-                      <option value="alp">حلب</option>
-                    </select>
-            </div>
-        </div>
-        <hr style="width: 50%;margin:auto">
-            <h5 class="center titles">المادة</h5>
-            <img src="img/subject.png" alt="city" style="height: 50px;width: 50px">
-            <div class="container">
-            <div class="input-field col s12 input-form">
-                    <select id="subject-select" name="subject" onfocus="this.selectedIndex = -1">
-                      <option value="" disabled selected> المادة</option>
-                    </select>
-            </div>
-        </div>
-        <hr style="width: 50%;margin:auto">
-            <h5 class="center titles">الوقت</h5>
-            <img src="img/time.png" alt="time" style="height: 50px;width: 50px">
-        <div class="container">
-                <div class="col s12" style="padding-bottom: 24px">
-                        <select id="day-select" name="day">
-                                <option value="" disabled selected>اليوم</option>
-                        </select>
-                </div>
-                
-                <div class="col s12" style="padding-bottom: 2.5rem">
-                        <select id="time-select" name="time">
-                                <option value="" disabled selected>اختر الوقت المناسب</option>
-                        </select>
-                </div>
-            </div>
-            <hr style="width: 50%;margin:auto">
-            <h5 class="center titles">المعلومات الشخصية</h5>
-            <img src="img/personalIcon.png" alt="personal" style="height: 50px;width: 50px">
-            <div class="container">
-            <div class="row">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="name-input" type="text" class="validate" style="color: white" name="name">
-                      <label for="name-input" style="color: white">الاسم</label>
+                            </div>
+                            <div class="col s6 m3">
+                                <div class="card-panel secondaryColorLight lighten-1">
+                                    <img src="img/physIcon2.png" alt="Math" style="height: 60px;width:60px">
+                                    <br>
+                                    <h5>الفيزياء</h5>
+                                    <div class="mathTeachers" style="font-weight: 500;">
+                                        <h5 id="phys_header">0</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s6 m3">
+                                <div class="card-panel secondaryColorLight lighten-1">
+                                    <img src="img/bioIcon2.png" alt="Math" style="height: 60px;width:60px">
+                                    <br>
+                                    <h5>العلوم</h5>
+                                    <div class="mathTeachers" style="font-weight: 500;">
+                                        <h5 id="bio_header">0</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6 m3">
+                                <div class="card-panel secondaryColorLight lighten-1">
+                                    <img src="img/arIcon.png" alt="Math" style="height: 60px;width:60px">
+                                    <br>
+                                    <h5>العربية</h5>
+                                    <div class="mathTeachers" style="font-weight: 500;">
+                                        <h5 id="ar_header">0</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s6 m3">
+                                <div class="card-panel secondaryColorLight lighten-1">
+                                    <img src="img/engIcon2.png" alt="Math" style="height: 60px;width:60px">
+                                    <br>
+                                    <h5>الانجليزية</h5>
+                                    <div class="mathTeachers" style="font-weight: 500;">
+                                        <h5 id="eng_header">0</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s6 m3">
+                                <div class="card-panel secondaryColorLight lighten-1">
+                                    <img src="img/frenIcon.png" alt="Math" style="height: 60px;width:60px">
+                                    <br>
+                                    <h5>الفرنسية</h5>
+                                    <div class="mathTeachers" style="font-weight: 500;">
+                                        <h5 id="fr_header">0</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s6 m3">
+                                <div class="card-panel secondaryColorLight lighten-1">
+                                    <img src="img/geoIcon.png" alt="Math" style="height: 60px;width:60px">
+                                    <br>
+                                    <h5>الجغرافية</h5>
+                                    <div class="mathTeachers" style="font-weight: 500;">
+                                        <h5 id="geo_header">0</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-field col s12 m6 l6">
-                            <input id="lastName-input" type="text" class="validate" style="color: white" name="lastname">
-                            <label for="lastName-input" style="color: white">الكنية</label>
-                          </div>
-                          
-                </div>
-                <div class="row">
-                        <div class="input-field col s4 offset-s4">
-                                <input id="phoneNumber-input" type="number" class="validate" style="color: white" name="phone">
-                                <label for="phoneNumber-input" style="color: white">رقم الجوال</label>
-                              </div>
-                </div>
-                </div>
-                <div class="container" style="padding-bottom: 2.5rem">
-                        <button class="btn waves-effect waves-light yellow darken-3" type="submit" name="action">انشاء الطلب
+                </section>
+                <!--START OF FORM-->
+                <section class="section section-follow secondaryColor darken2 white-text center seperator scrollspy" id="apply">
+                    <form id="form" action="/api/forms" method="POST">
+                        <img src="img/form.png" style="width:50px;height:50px">
+                        <h4 class="titles">ملئ الطلب</h4>
+                        <hr style="width: 50%;margin:auto">
+                        <div class="section"></div>
+                        <div class="row">
+                            <div class="col s12 m5">
+                                <h5 class="center titles">المدينة</h5>
+                                <img src="img/city.png" alt="City" style="height: 50px;width: 50px">
+                                <div class="container">
+                                    <div class="input-field col s12 input-form">
+                                        <select id="city-select" name="city">
+                                            <option value="" disabled selected>اختر مدينتك</option>
+                                            <option value="dms">دمشق</option>
+                                            <option value="alp">حلب</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m2 hide-on-small-only">
+                                <img src="img/arrow.png" alt="lmao" style="height: 120px;width: 120px;margin-top: 50px" />
+                            </div>
+                            <div class="section col s12 m5"></div>
+                            <div class="col s12 m4">
+                                <h5 class="center titles">المادة</h5>
+                                <img src="img/subject.png" alt="city" style="height: 50px;width: 50px">
+                                <div class="container">
+                                    <div class="input-field col s12 input-form">
+                                        <select id="subject-select" name="subject" onfocus="this.selectedIndex = -1">
+                                            <option value="" disabled selected> المادة</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <hr style="width: 50%;margin:auto"> -->
+                        <div class="section"></div>
+                        <div class="section"></div>
+                        <h5 class="center titles">الوقت</h5>
+                        <img src="img/time.png" alt="time" style="height: 50px;width: 50px">
+                        <div class="container">
+                            <div class="col s12" style="padding-bottom: 24px">
+                                <select id="day-select" name="day">
+                                    <option value="" disabled selected>اليوم</option>
+                                </select>
+                            </div>
+                            <div class="section"></div>
+                            <div class="col s12" style="padding-bottom: 2.5rem">
+                                <select id="time-select" name="time">
+                                    <option value="" disabled selected>اختر الوقت المناسب</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="section"></div>
+                        <hr style="width: 50%;margin:auto">
+                        <div class="section"></div>
+
+                        <h5 class="center titles">المعلومات الشخصية</h5>
+                        <img src="img/personalIcon.png" alt="personal" style="height: 50px;width: 50px">
+                        <div class="section"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="input-field col s12 m6 l6">
+                                    <input id="name-input" type="text" class="validate" style="color: white" name="name">
+                                    <label for="name-input" style="color: white">الاسم</label>
+                                </div>
+                                <div class="input-field col s12 m6 l6">
+                                    <input id="lastName-input" type="text" class="validate" style="color: white" name="lastname">
+                                    <label for="lastName-input" style="color: white">الكنية</label>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s4 offset-s4">
+                                    <input id="phoneNumber-input" type="number" class="validate" style="color: white" name="phone">
+                                    <label for="phoneNumber-input" style="color: white">رقم الجوال</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" style="padding-bottom: 2.5rem">
+                            <button class="btn waves-effect waves-light yellow darken-3" type="submit" name="action">انشاء الطلب
                                 <i class="material-icons right">send</i>
-                        </button>
-                </div>
-                <div class="container" style="padding-bottom: 2.5rem">
-                    <p id="error" class="red-text"></p>
-                </div>
-        </section>
-        <%- messages('message', locals) %>
-        <% include partials/footer %>
-      </div>
+                            </button>
+                        </div>
+                        <div class="container" style="padding-bottom: 2.5rem">
+                            <p id="error" class="red-text"></p>
+                        </div>
+                </section>
+                <%- messages('message', locals) %>
+                    <% include partials/footer %>
+            </div>
     </div>
     </div>
-    
-  </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="/javascript/fetchingHeaders.js"></script>
-  <script src="/javascript/selectionFiltering.js"></script>
-  <script src="/javascript/submitForm.js"></script>
-  
-    
-  
-  <script>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/javascript/fetchingHeaders.js"></script>
+<script src="/javascript/selectionFiltering.js"></script>
+<script src="/javascript/submitForm.js"></script>
+
+<script>
     var elems = document.querySelectorAll(".slider");
     var instances = M.Slider.init(elems, {
-      indicators: true
+        indicators: true
     });
-  </script>
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-  <script>document.addEventListener('DOMContentLoaded', function() {
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.scrollspy');
         var instances = M.ScrollSpy.init(elems, {});
-      });</script>
-      <script>
-       document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, {});
-  });</script>
-  <script>document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, {});
-  });
+    });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, {});
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems, {});
+    });
+</script>
+
 </html>
