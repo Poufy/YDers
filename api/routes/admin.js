@@ -107,7 +107,6 @@ router.get("/panel", ensureAuthenticated, (req, res) => {
               };
             })
           };
-          // eval(locus);
           res.render("panel", {
             admin: req.user,
             formObjects: formResponse,

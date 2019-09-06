@@ -5,6 +5,7 @@ const name = document.getElementById("admin-name");
 const lastname = document.getElementById("admin-lastname");
 const city = document.getElementById("admin-city");
 const subject = document.getElementById("admin-subject");
+const adminId = document.getElementById("admin-id");
 const error = document.getElementById("admin-error");
 
 adminForm.addEventListener("submit", e => {
@@ -29,7 +30,8 @@ adminForm.addEventListener("submit", e => {
       subject: subject.innerHTML,
       location: city.innerHTML,
       day: selectedDay,
-      time: selectedTime
+      time: selectedTime,
+      adminId: adminId.innerHTML
     });
     $.ajax({
       type: "POST",
@@ -40,7 +42,8 @@ adminForm.addEventListener("submit", e => {
         subject: subject.innerHTML,
         location: city.innerHTML,
         day: selectedDay,
-        time: selectedTime
+        time: selectedTime,
+        adminId: adminId.innerHTML
       },
       dataType: "json",
       success: function(data, textStatus) {

@@ -16,7 +16,7 @@
 
 - [x] Perform the form POST request from the front-end and send the info about the logged in user along with it
 
-- [ ] Prevent duplicate signups with the same username
+- [x] Prevent duplicate signups with the same username
 
 - [ ] Add Multiple passport strategies (Facebook, Google)
 
@@ -26,19 +26,23 @@
 
 - [ ] Cool looking 404 error page
 
+- [ ] Put javascript methods in seperate files in the panel.js file
+
+- [ ] organize the materializecss
+
 - [x] SIGNUP/LOGIN in order to submit the form
 
 - [x] A seperate route for admins to be able to easily make post/delete requests
 
 - [x] Add the day in the form to the query. Right now it is assumed that every teacher is free to teach at a specific time everyday.
 
-- [ ] Better looking flash messages
+- [x] Better looking flash messages
 
-- [ ] Admin table of current avaiable times and requests available
+- [x] Admin table of current avaiable times and requests available
 
-- [ ] Fix materializer error/Fail get error after admin/form submission
+- [x] Fix materializer error/Fail get error after admin/form submission
 
-- [ ] Better form look and polishing
+- [x] Better form look and polishing
 
 # Problems
 
@@ -83,3 +87,11 @@ Displaying forms to the admins that only match their available times and day:
     	- Using the Teacher model find all the times and days that admins entered(name and lastname of teachers and admins match). However, this will become very complex with larger data.
 
     	- Filtering the data in the front-end on the admin panel depending on the times and day he previously entered which could be stored in an array alongside the admin object. For this we need to make an update route to the admin and add two fields for an array of days and an array of times. And some fields for each admin to be able to update their arrays easily.
+
+Anyone being able to make a post request to the API and alter with the data if they knew the parameters:
+
+    Possible Solutions:
+
+    	- Add a parameter that contains a password/unique element(like the ID) with every post request. Checking the ID would require another query to the database to see if the Admin exists, but having a certain password is not very secure.
+
+    	- Find a way to authenticate only some users

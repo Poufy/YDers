@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Teacher = require("../models/Teacher");
+const Admin = require("../models/Admin");
 
 // GET REQUEST
 router.get("/", (req, res) => {
@@ -41,46 +42,58 @@ router.post("/", (req, res) => {
     subject: req.body.subject,
     location: req.body.location,
     day: req.body.day,
-    time: req.body.time
+    time: req.body.time,
+    adminId: req.body.adminId
   });
-  //Making sure no duplicates are added
-  Teacher.findOne({
-    name: req.body.name,
-    lastName: req.body.lastName,
-    subject: req.body.subject,
-    location: req.body.location,
-    day: req.body.day,
-    time: req.body.time
-  }).then(teach => {
-    if (teach == null) {
-      //if this query returns null meaning this item does not exist we add it
-      teacher
-        .save()
-        .then(teacher => {
-          res.status(201).json({
-            message: "Added Teacher Successfully",
-            createdTeacher: {
-              _id: teacher._id,
-              name: teacher.name,
-              lastName: teacher.lastName,
-              subject: teacher.subject,
-              location: teacher.location,
-              day: teacher.day,
-              time: teacher.time
-            }
-          });
-        })
-        .catch(err => {
-          res.status(500).json({
-            error: err
-          });
+  //Make sure that the admin exists in our database
+  Admin.findById({
+    _id: teacher.adminId
+  })
+    .exec()
+    .then(admin => {
+      if (admin) {
+        //if the Admin exists then we allow for the entry to be added
+        //Making sure no duplicates are added
+        Teacher.findOne({
+          name: req.body.name,
+          lastName: req.body.lastName,
+          subject: req.body.subject,
+          location: req.body.location,
+          day: req.body.day,
+          time: req.body.time
+        }).then(teach => {
+          if (teach == null) {
+            //if this query returns null meaning this item does not exist we add it
+            teacher
+              .save()
+              .then(teacher => {
+                res.status(201).json({
+                  message: "Added Teacher Successfully",
+                  createdTeacher: {
+                    _id: teacher._id,
+                    name: teacher.name,
+                    lastName: teacher.lastName,
+                    subject: teacher.subject,
+                    location: teacher.location,
+                    day: teacher.day,
+                    time: teacher.time
+                  }
+                });
+              })
+              .catch(err => {
+                res.status(500).json({
+                  error: err
+                });
+              });
+          } else {
+            return res.status(500).json({
+              message: "This entry already exists هذه المعلومات موجودة مسبقا" //otherwise we return this.
+            });
+          }
         });
-    } else {
-      return res.status(500).json({
-        message: "This entry already exists هذه المعلومات موجودة مسبقا" //otherwise we return this.
-      });
-    }
-  });
+      }
+    })
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 //Get a specific entry by its ID

@@ -7,7 +7,8 @@ const teacherSchema = mongoose.Schema({
   subject: { type: String, required: true, trimmed: true },
   location: { type: String, required: true, trimmed: true },
   day: { type: String, required: true, trimmed: true },
-  time: { type: Number, required: true }
+  time: { type: Number, required: true },
+  adminId: { type: String, required: true }
 });
 
 module.exports = mongoose.model("Teacher", teacherSchema);

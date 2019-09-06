@@ -1,11 +1,8 @@
 <div class="container">
-  <div style="clear: both">
     <h4 id="admin-name" class="center"><%= admin.name%></h2>
     <h5 id="admin-lastname" class="center"><%= admin.lastname%></h2>
+      <p class="center" id="admin-id"><%=admin._id%></p>
       <h4 id="admin-city" style="visibility: hidden;"><%= admin.location%></h4>
-
-      <div class="section"></div>
-  </div>
   <hr />
   <h4 id="admin-subject" class="center"><%= admin.subject%></h4>
   <div class="section"></div>
@@ -157,7 +154,6 @@
   }
 </script>
 <script src="/javascript/submitAdminForm.js"></script>
-<script src="/javascript/completeAdminForm.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
