@@ -5,6 +5,7 @@ const passport = require("passport");
 const Admin = require("../models/Admin");
 const Teacher = require("../models/Teacher");
 const Form = require("../models/Form");
+const config = require("../../config/config");
 
 router.post(
   "/register",
@@ -17,6 +18,7 @@ router.post(
     const location = req.body.location;
     const subject = req.body.subject;
     const isAdmin = req.body.isAdmin;
+    const masterPassword = req.body.masterPassword;
 
     let newAdmin = new Admin({
       _id: new mongoose.Types.ObjectId(),
@@ -26,31 +28,37 @@ router.post(
       password: password,
       location: location,
       subject: subject,
-      isAdmin: isAdmin
+      isAdmin: isAdmin,
+      masterPassword: masterPassword
     });
-
-    newAdmin
-      .save()
-      .then(admin => {
-        res.status(201).json({
-          message: "Admin added successfully!",
-          createdAdmin: {
-            _id: admin._id,
-            name: admin.name,
-            lastname: admin.lastname,
-            username: admin.username,
-            password: admin.password,
-            location: admin.location,
-            subject: admin.subject,
-            isAdmin: admin.isAdmin
-          }
+    if (masterPassword === config.masterPassword) {
+      newAdmin
+        .save()
+        .then(admin => {
+          res.status(201).json({
+            message: "Admin added successfully!",
+            createdAdmin: {
+              _id: admin._id,
+              name: admin.name,
+              lastname: admin.lastname,
+              username: admin.username,
+              password: admin.password,
+              location: admin.location,
+              subject: admin.subject,
+              isAdmin: admin.isAdmin
+            }
+          });
+        })
+        .catch(err => {
+          res.status(500).json({
+            error: err
+          });
         });
-      })
-      .catch(err => {
-        res.status(500).json({
-          error: err
-        });
+    } else {
+      res.status(500).json({
+        error: "Wrong master password"
       });
+    }
   }
 );
 
@@ -89,8 +97,8 @@ router.get("/panel", ensureAuthenticated, (req, res) => {
           };
         })
       };
-
-      Teacher.find()
+      //Since every teacher entry has the adminId that entered it attached to it, We can use the req.user._id which is the admin id in this case to find the teacher entries this admin submitted
+      Teacher.find({ adminId: req.user._id })
         .exec()
         .then(teachers => {
           teacherResponse = {

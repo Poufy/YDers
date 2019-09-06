@@ -31,6 +31,10 @@ const adminSchema = mongoose.Schema({
   isAdmin: {
     type: Boolean,
     required: true
+  },
+  masterPassword: {
+    type: String,
+    required: true
   }
 });
 
