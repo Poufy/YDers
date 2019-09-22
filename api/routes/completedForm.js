@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const Form = require("../models/Form");
-
+const CompletedForm = require("../models/CompletedForm");
+const locus = require("locus");
 //GET all forms
 router.get("/", (req, res) => {
-  Form.find()
+  CompletedForm.find()
     .exec()
     .then(forms => {
       const response = {
@@ -34,59 +34,35 @@ router.get("/", (req, res) => {
     });
 });
 
-//GET a specific form
-router.get("/:formId", (req, res) => {
-  Form.findById({ _id: req.params.formId })
-    .exec()
-    .then(form => {
-      const response = {
-        _id: form._id,
-        userId: form.userId,
-        name: form.name,
-        lastName: form.lastName,
-        username: form.username,
-        email: form.email,
-        phoneNumber: form.phoneNumber,
-        subject: form.subject,
-        location: form.location,
-        time: form.time,
-        day: form.day
-      };
-
-      res.status(200).json({ response }); //we could use this data to pass it to some view later
-    })
-    .catch(err => {
-      res.status(500).json({
-        error: err
-      });
-    });
-});
-
-router.post("/", loggedIn, (req, res, next) => {
-  const form = new Form({
+router.post("/", (req, res, next) => {
+  //eval(locus);
+  const completedForm = new CompletedForm({
     //creating a form object from the module then turning it into a promise
-    _id: new mongoose.Types.ObjectId(),
-    userId: req.user._id,
-    email: req.user.email,
-    username: req.user.username,
+    _id: req.body._id,
+    userId: req.body.userId,
+    email: req.body.email,
+    username: req.body.username,
     name: req.body.name,
     lastName: req.body.lastName,
     phoneNumber: req.body.phoneNumber,
     subject: req.body.subject,
     location: req.body.location,
     day: req.body.day,
-    time: req.body.time
+    time: req.body.time,
+    status: req.body.status,
+    note: req.body.note
   });
-  form
+
+  completedForm
     .save()
     .then(form => {
       res.status(201).json({
         message: "Added Form Successfully",
         createdForm: {
           _id: form._id,
-          userId: req.user._id,
-          email: req.user.email,
-          username: req.user.username,
+          userId: req.body.userId,
+          email: req.body.email,
+          username: req.body.username,
           name: form.name,
           lastName: form.lastname,
           phoneNumber: form.phone,
@@ -104,16 +80,7 @@ router.post("/", loggedIn, (req, res, next) => {
     });
 });
 
-router.delete("/:formId", (req, res, next) => {
-  //Replace the matching universities with the body sent on the request
-  Form.deleteOne({ _id: req.params.formId })
-    .exec()
-    .then(console.log("Deleted Form"))
-    .catch(err => {
-      console.log(err);
-    });
-});
-
+//Ensure admin is logged in.
 function loggedIn(req, res, next) {
   if (req.user) {
     next();
@@ -121,4 +88,5 @@ function loggedIn(req, res, next) {
     res.send({ redirect: "/user/login" });
   }
 }
+
 module.exports = router;

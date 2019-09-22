@@ -7,11 +7,13 @@ const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
 // const cookieParser = require("cookie-parser");
+//ROUTES
 const landingPageRoute = require("./api/routes/landingPage");
 const teacherRouter = require("./api/routes/teacher");
 const formRouter = require("./api/routes/form");
 const userRouter = require("./api/routes/user");
 const adminRouter = require("./api/routes/admin");
+const completedFormRouter = require("./api/routes/completedForm");
 
 mongoose.connect(config.url, { useNewUrlParser: true });
 /* MIDDLEWEAR */
@@ -69,12 +71,26 @@ app.get("*", (req, res, next) => {
   next();
 });
 
+//Facebook Routes
+// app.get("/auth/facebook", passport.authenticate("facebook"));
+
+// app.get(
+//   "/auth/facebook/callback",
+//   passport.authenticate("facebook", { failureRedirect: "/login" }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     console.log(req.user);
+//     res.redirect("/");
+//   }
+// );
+
 //Handling the routes
 app.use("/", landingPageRoute); //Any request to / will be handled by the landingPageRoute
 app.use("/api/teachers", teacherRouter);
 app.use("/api/forms", formRouter);
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
+app.use("/api/completedforms", completedFormRouter);
 
 //if you reach this line that means no route was able to handle the request therefore we catch the error here
 app.use((req, res, next) => {

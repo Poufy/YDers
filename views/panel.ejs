@@ -3,164 +3,302 @@
     <h5 id="admin-lastname" class="center"><%= admin.lastname%></h2>
       <p class="center" id="admin-id"><%=admin._id%></p>
       <h4 id="admin-city" style="visibility: hidden;"><%= admin.location%></h4>
-  <hr />
-  <h4 id="admin-subject" class="center"><%= admin.subject%></h4>
-  <div class="section"></div>
-  <hr />
-  <form id="admin-form" action="/api/teachers" method="POST">
-    <p class="center red-text">الرجاء الانتباه ان الوقت من الساعة 0 حتى الساعة 24</p>
-    <h5 class="center">الساعة</h5>
-    <select name="time" id="admin-time-select">
-        <option value="0">0 منتصف الليل</option>
-
-      <% for(let i = 1; i <= 11;i++) {%>
-      <option value="<%=i%>"><%=i%> صباحا</option>
-      <% } %>
-      <option value="12">12 ظهرا</option>
-      <% for(let i = 13; i <= 23;i++) {%>
-        <option value="<%=i%>"><%=i-12%> مساء</option>
-        <% } %>
-    </select>
-    <div class="section"></div>
-    <h5 class="center">اليوم</h5>
-    <select id="admin-day-select" name="day" class="select">
-      <option value="" disabled selected>اليوم</option>
-      <option value="السبت">السبت</option>
-      <option value="الاحد">الاحد</option>
-      <option value="الاثنين">الاثنين</option>
-      <option value="الثلاثاء">الثلاثاء</option>
-      <option value="الاربعاء">الاربعاء</option>
-      <option value="الخميس">الخميس</option>
-      <option value="الجمعة">الجمعة</option>
-    </select>
-    <div class="section"></div>
-    <button
-      class="btn waves-effect waves-light secondaryColor darken-3"
-      type="submit"
-      name="action"
-      style="margin-bottom: 24px"
-    >
-      انشاء الطلب
-      <i class="material-icons right">send</i>
-    </button>
     <hr />
+    <h4 id="admin-subject" class="center"><%= admin.subject%></h4>
+    <div class="section"></div>
+    <hr />
+    <form id="admin-form" action="/api/teachers" method="POST">
+        <p class="center red-text">الرجاء الانتباه ان الوقت من الساعة 0 حتى الساعة 24</p>
+        <h5 class="center">الساعة</h5>
+        <select name="time" id="admin-time-select">
+            <option value="0">0 منتصف الليل</option>
+
+            <% for(let i = 1; i <= 11;i++) {%>
+                <option value="<%=i%>">
+                    <%=i%> صباحا</option>
+                <% } %>
+                    <option value="12">12 ظهرا</option>
+                    <% for(let i = 13; i <= 23;i++) {%>
+                        <option value="<%=i%>">
+                            <%=i-12%> مساء</option>
+                        <% } %>
+        </select>
+        <div class="section"></div>
+        <h5 class="center">اليوم</h5>
+        <select id="admin-day-select" name="day" class="select">
+            <option value="" disabled selected>اليوم</option>
+            <option value="السبت">السبت</option>
+            <option value="الاحد">الاحد</option>
+            <option value="الاثنين">الاثنين</option>
+            <option value="الثلاثاء">الثلاثاء</option>
+            <option value="الاربعاء">الاربعاء</option>
+            <option value="الخميس">الخميس</option>
+            <option value="الجمعة">الجمعة</option>
+        </select>
+        <div class="section"></div>
+        <button class="btn waves-effect waves-light secondaryColor darken-3" type="submit" name="action" style="margin-bottom: 24px">
+            انشاء الطلب
+            <i class="material-icons right">send</i>
+        </button>
+        <hr />
+        <div class="section"></div>
+        <div class="section"></div>
+    </form>
+
+    <div style="padding-bottom: 2.5rem">
+        <p id="admin-error" class="red-text"></p>
+    </div>
+    <h4 class="center">الطلبات</h4>
+
+    <table class="responsive-table" style="margin-bottom: 36px">
+        <thead>
+            <tr dir="rtl" lang="ar">
+                <th>الاسم</th>
+                <th>الكنية</th>
+                <th>البريد</th>
+                <th>الرقم</th>
+                <th>اليوم</th>
+                <th>الوقت</th>
+                <th>قبول</th>
+                <th>الغاء</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(var i=0; i < formObjects.forms.length; i++) { %>
+                <tr lang="ar">
+                    <td>
+                        <%= formObjects.forms[i].name %>
+                    </td>
+                    <td>
+                        <%= formObjects.forms[i].lastName %>
+                    </td>
+                    <td>
+                        <%= formObjects.forms[i].email %>
+                    </td>
+                    <td>
+                        <%= formObjects.forms[i].phoneNumber %>
+                    </td>
+                    <td>
+                        <%= formObjects.forms[i].day %>
+                    </td>
+                    <td>
+                        <%= formObjects.forms[i].time%>
+                    </td>
+                    <td>
+                        <button class="btn-floating btn-large waves-effect waves-light green" id="<%= formObjects.forms[i]._id%>" onclick="completeForm(id)">
+                            تم
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-floating btn-large waves-effect waves-light red" id="<%= formObjects.forms[i]._id%>" onclick="cancelForm(id)">
+                            الغاء
+                        </button>
+                    </td>
+                    <!--Using the loop variable in the id so not all of them have the same id. I want to be able to pinpoint only one to take the text from.-->
+                    <!-- <td>
+          <div class="input-field inline">
+          <input id="reason_inline<%=i%>" type="text" class="validate">
+          <label for="reason_inline<%=i%>">السبب...</label>
+        </div></td> -->
+                    <!--Setting the id of the button to the id of the form document-->
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+    <div class="section"></div>
+
+    <h4 class="center">اوقاتي المتاحة</h4>
+    <table class="responsive-table" style="margin-bottom: 36px">
+        <thead>
+            <tr dir="rtl" lang="ar">
+                <th>المادة</th>
+                <th>اليوم</th>
+                <th>الوقت</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(var i=0; i < teacherObjects.teachers.length; i++) { %>
+                <tr lang="ar">
+                    <td>
+                        <%= teacherObjects.teachers[i].subject %>
+                    </td>
+                    <td>
+                        <%= teacherObjects.teachers[i].day %>
+                    </td>
+                    <td>
+                        <%= teacherObjects.teachers[i].time %>
+                    </td>
+                    <td>
+                        <button class="btn-floating btn-large waves-effect waves-light red" id="<%= teacherObjects.teachers[i]._id%>" onclick="deleteTeacher(id)">
+                            الغاء
+                        </button>
+                    </td>
+                    <!--Setting the id of the button to the id of the form document-->
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
     <div class="section"></div>
     <div class="section"></div>
-  </form>
-
-  <div style="padding-bottom: 2.5rem">
-    <p id="admin-error" class="red-text"></p>
-  </div>
-  <h4 class="center">الطلبات</h4>
-
-  <table class="responsive-table" style="margin-bottom: 36px">
-    <thead>
-      <tr dir="rtl" lang="ar">
-        <th>الاسم</th>
-        <th>الكنية</th>
-        <th>البريد</th>
-        <th>الرقم</th>
-        <th>اليوم</th>
-        <th>الوقت</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% for(var i=0; i < formObjects.forms.length; i++) { %>
-      <tr lang="ar">
-        <td><%= formObjects.forms[i].name %></td>
-        <td><%= formObjects.forms[i].lastName %></td>
-        <td><%= formObjects.forms[i].email %></td>
-        <td><%= formObjects.forms[i].phoneNumber %></td>
-        <td><%= formObjects.forms[i].day %></td>
-        <td><%= formObjects.forms[i].time%></td>
-        <td>
-          <button
-            class="btn-floating btn-large waves-effect waves-light green"
-            id="<%= formObjects.forms[i]._id%>"
-            onclick="completeForm(id)"
-          >
-            تم
-          </button>
-        </td>
-        <!--Setting the id of the button to the id of the form document-->
-      </tr>
-      <% } %>
-    </tbody>
-  </table>
-  <div class="section"></div>
-
-  <h4 class="center">اوقاتي المتاحة</h4>
-  <table class="responsive-table" style="margin-bottom: 36px">
-    <thead>
-      <tr dir="rtl" lang="ar">
-        <th>المادة</th>
-        <th>اليوم</th>
-        <th>الوقت</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% for(var i=0; i < teacherObjects.teachers.length; i++) { %>
-      <tr lang="ar">
-        <td><%= teacherObjects.teachers[i].subject %></td>
-        <td><%= teacherObjects.teachers[i].day %></td>
-        <td><%= teacherObjects.teachers[i].time %></td>
-        <td>
-          <button
-            class="btn-floating btn-large waves-effect waves-light red"
-            id="<%= teacherObjects.teachers[i]._id%>"
-            onclick="deleteTeacher(id)"
-          >
-            الغاء
-          </button>
-        </td>
-        <!--Setting the id of the button to the id of the form document-->
-      </tr>
-      <% } %>
-    </tbody>
-  </table>
-  <div class="section"></div>
-  <div class="section"></div>
 </div>
 <% include partials/footer %>
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="../style.css"
-/>
-<link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-<script>
-  function completeForm(id) {
-    $.ajax({ url: `/api/forms/${id}`, method: "DELETE" })
-      .then(location.reload()) //Refresh the page after completing the item
-      .catch(err => {
-        console.log("did not work");
-      });
-  }
-  function deleteTeacher(id) {
-    $.ajax({ url: `/api/teachers/${id}`, method: "DELETE" })
-      .then(location.reload()) //Refresh the page after completing the item
-      .catch(err => {
-        console.log("did not work");
-      });
-  }
-</script>
-<script src="/javascript/submitAdminForm.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script>
+        //1- Get the document by its ID
+        //2- Use the document we got + the status field with value true to make a post to completed document.
+        //3- Delete the entry from the forms collection
+        //ORDER MATTERS
+        function completeForm(id) {
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var elems = document.querySelectorAll("select");
-    var instances = M.FormSelect.init(elems, {});
-  });
-</script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            function getForm(id) {
+                //console.log("1: " + id)
+                $.ajax({
+                    type: "GET",
+                    url: `/api/forms/${id}`,
+                    dataType: "json",
+                    success: function(data, textStatus) {
+                        let completedForm = data.response;
+                        postForm(id, completedForm)
+                    }
+                });
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+            }
+
+            function postForm(id, completedForm) {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/completedforms",
+                    data: {
+                        _id: completedForm._id, //This ID is going to be the id of the form
+                        userId: completedForm.userId,
+                        username: completedForm.username,
+                        email: completedForm.email,
+                        name: completedForm.name,
+                        lastName: completedForm.lastName,
+                        phoneNumber: completedForm.phoneNumber,
+                        subject: completedForm.subject,
+                        location: completedForm.location,
+                        day: completedForm.day,
+                        time: completedForm.time,
+                        status: true //This is either Completed or canceled
+                    },
+                    dataType: "json",
+                    success: function() {
+                        console.log("2: " + id);
+                        deleteForm(id);
+                    }
+                });
+
+            }
+
+            function deleteForm(id) {
+                //console.log("3: " + id);
+
+                $.ajax({
+                        url: `/api/forms/${id}`,
+                        method: "DELETE"
+                    })
+                    .then(location.reload()) //Refresh the page after completing the item
+                    .catch(err => {
+                        console.log("did not work");
+                    });
+            }
+
+            getForm(id);
+        }
+
+        /*PUT BELOW IN A SEPERATE FILE*/
+        //Delete teacher entry
+        function deleteTeacher(id) {
+            $.ajax({
+                    url: `/api/teachers/${id}`,
+                    method: "DELETE"
+                })
+                .then(location.reload()) //Refresh the page after completing the item
+                .catch(err => {
+                    console.log("did not work");
+                });
+        }
+
+        /*PUT BELOW IN A SEPERATE FILE*/
+        function cancelForm(id) {
+            let reason = prompt("الرجاء ادخال سبب الإلغاء")
+
+            function getForm1(id) {
+                //console.log("1: " + id)
+                $.ajax({
+                    type: "GET",
+                    url: `/api/forms/${id}`,
+                    dataType: "json",
+                    success: function(data, textStatus) {
+                        let cf = data.response;
+                        postForm1(id, cf, reason)
+                    }
+                });
+
+            }
+
+            function postForm1(id, cf, note) {
+                let completedFormWithNote = cf;
+                completedFormWithNote.note = note;
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/completedforms",
+                    data: {
+                        _id: completedFormWithNote._id, //This ID is going to be the id of the form
+                        userId: completedFormWithNote.userId,
+                        username: completedFormWithNote.username,
+                        email: completedFormWithNote.email,
+                        name: completedFormWithNote.name,
+                        lastName: completedFormWithNote.lastName,
+                        phoneNumber: completedFormWithNote.phoneNumber,
+                        subject: completedFormWithNote.subject,
+                        location: completedFormWithNote.location,
+                        day: completedFormWithNote.day,
+                        time: completedFormWithNote.time,
+                        status: false, //This is either Completed or canceled
+                        note: completedFormWithNote.note
+                    },
+                    dataType: "json",
+                    success: function() {
+                        console.log("2: " + id);
+                        deleteForm1(id);
+                    }
+                });
+
+            }
+
+            function deleteForm1(id) {
+
+                $.ajax({
+                        url: `/api/forms/${id}`,
+                        method: "DELETE"
+                    })
+                    .then(
+                        location.reload()
+                    ) //Refresh the page after completing the item
+                    .catch(err => {
+                        console.log("did not work");
+                    });
+            }
+            getForm1(id);
+
+        }
+    </script>
+    <script src="/javascript/submitAdminForm.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var elems = document.querySelectorAll("select");
+            var instances = M.FormSelect.init(elems, {});
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>

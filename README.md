@@ -1,6 +1,16 @@
-# TieCo
+# TODOS
 
-# TODO
+- [] The admin can cancel the request with giving a reason in a textbox and confirm it, then the request will go into a log table that contains confirmed and canceled requests in different colors at the bottom of the page.
+
+- [] Completed requests collection from requests instead of deleting.
+
+- [] When a user form is pending on a specific time it should not appear to the other users. So we should add a pending field on the time that the user chooses until the request is done.
+
+- [] The teacher collection might be unneccessary and could be deleted for an array that is attached to every admin's entry.
+
+- [] Optional checkbox to choose a certain teacher from our teacher database and then show the times ONLY for that teacher
+
+- [] Hide the form of the user is not logged in
 
 - [x] Get the GET/POST/DELETE/UPDATE requests working on /api/teachers
 
@@ -37,6 +47,8 @@
 - [x] Add the day in the form to the query. Right now it is assumed that every teacher is free to teach at a specific time everyday.
 
 - [x] Better looking flash messages
+
+- [] Secure form get request
 
 - [x] Admin table of current avaiable times and requests available
 
@@ -95,3 +107,9 @@ Anyone being able to make a post request to the API and alter with the data if t
     	- Add a parameter that contains a password/unique element(like the ID) with every post request. Checking the ID would require another query to the database to see if the Admin exists, but having a certain password is not very secure.
 
     	- Find a way to authenticate only some users
+
+The admins knowning which completedForm is their own completed form.
+
+    Possible Solution:
+
+    	- Attach an array to every Admin document that contains the ID's of the forms that this admin completed and use that array to pull the completed forms from the database. HOWEVER, this would only work if the forms stayed in the same collection after being completed. But this is not the case. The form will be moved to the completedForm collection for more organization in the database. Therefore, the ID will most likely change when moved from one collection to another. To fix this we could find a way to move a document without giving it a new ID but make it keep the previous one. By moving here I mean making a post request with the parameters being that of the current form to another collection, then deleting it from the current database.
