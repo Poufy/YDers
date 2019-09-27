@@ -29,7 +29,7 @@ router.post(
       location: location,
       subject: subject,
       isAdmin: isAdmin,
-      masterPassword: masterPassword
+      completedForms: []
     });
     if (masterPassword === config.masterPassword) {
       newAdmin
@@ -45,6 +45,7 @@ router.post(
               password: admin.password,
               location: admin.location,
               subject: admin.subject,
+              completedForm: admin.completedForms,
               isAdmin: admin.isAdmin
             }
           });
@@ -143,6 +144,29 @@ router.post("/login", (req, res, next) => {
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/admin/login");
+});
+
+/*WARNING BEEEP BEEEP*/
+//With this, the admin document can be updated without the
+router.patch("/:adminId", (req, res, next) => {
+  const id = req.params.productId;
+  //The goal here is find and updating the completedForms array by adding one element without having to use a get and then an update request to add the completedForm.
+  Admin.findOneAndUpdate(
+    { _id: id },
+    { $push: { completedForms: req.body.completedForm } }
+  )
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: "Admin updated"
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 });
 
 function ensureAuthenticated(req, res, next) {

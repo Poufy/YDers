@@ -32,6 +32,11 @@ const adminSchema = mongoose.Schema({
     type: Boolean,
     required: true
   },
+  completedForms: {
+    //A better approach would be to have a list of object IDS of the forms for easier search but the completed forms are stored is strings for now.
+    type: [String], //This should be improved later.
+    required: true
+  },
   masterPassword: {
     type: String,
     required: true

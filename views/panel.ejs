@@ -151,6 +151,7 @@
     <script>
         //1- Get the document by its ID
         //2- Use the document we got + the status field with value true to make a post to completed document.
+        //3- Add the ID of the form to the admin array
         //3- Delete the entry from the forms collection
         //ORDER MATTERS
         function completeForm(id) {
@@ -190,12 +191,27 @@
                     dataType: "json",
                     success: function() {
                         console.log("2: " + id);
-                        deleteForm(id);
+                        updateAdminArray(id);
                     }
                 });
 
             }
-
+            /*REQUIRE TESTING*/
+            function updateAdminArray(id){
+              //  ADMIN ID IS document.getElementById("admin-id").innerHTML;
+              let adminId = document.getElementById("admin-id").innerHTML;
+                $.ajax({
+                    type: "PATCH",
+                    url: `/api/admin/${adminId}`,
+                    data: {
+                        completeForm: id
+                    },
+                    dataType: "json",
+                    success: function() {
+                        deleteForm(id);
+                    }
+                });
+            }
             function deleteForm(id) {
                 //console.log("3: " + id);
 

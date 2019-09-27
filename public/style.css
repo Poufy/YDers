@@ -4,35 +4,43 @@
   list-style: none;
   text-decoration: none;
   font-family: "Amiri", serif;
-  font-size: large;
 }
 *::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
-
+/* Fixing image */
+/* .imgContent {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+} */
 /*COLORS*/
 .primaryColor {
-  background-color: black;
+  background-color: #3f4448;
 }
 
+.primaryColorLight {
+  background-color: #4d5256;
+}
 .secondaryColor {
-  background-color: #5900ff;
+  /* background-color: #5900ff; */
+  background-color: #cdb878;
 }
 
 .secondaryColorLight {
-  background-color: #6a1bfd;
+  background-color: #b4a26f;
 }
 
 .primaryTextColor {
   color: black;
 }
 .secondaryTextColor {
-  color: #5900ff;
+  color: #cdb878;
 }
 
 .secondaryTextColorLight {
-  color: #6a1bfd;
+  color: #b4a26f;
 }
 
 .success {
@@ -58,7 +66,14 @@
   position: relative;
   top: 100vh;
 }
+/* Overriding button hover color */
+.btn:hover {
+  background-color: #b4a26f;
+}
 
+.btn {
+  height: 34px;
+}
 /*Overriding the default materialize settings*/
 .slider.fullscreen {
   top: 3vh;
@@ -66,7 +81,7 @@
 
 /*Overring the indicator color*/
 .slider .indicators .indicator-item.active {
-  background-color: #6a1bfd;
+  background-color: #b4a26f;
 }
 
 .slider .indicators .indicator-item {
@@ -79,4 +94,37 @@
 /* FORM SPACING */
 .input-form {
   padding-bottom: 24px;
+}
+
+/* Changing the navbar height */
+nav {
+  height: 48px;
+  line-height: 48px;
+}
+
+nav i,
+nav [class^="mdi-"],
+nav [class*="mdi-"],
+nav i.material-icons {
+  height: 48px;
+  line-height: 48px;
+}
+
+nav .button-collapse i {
+  height: 48px;
+  line-height: 48px;
+}
+
+nav .brand-logo {
+  font-size: 1.6rem;
+}
+
+@media only screen and (min-width: 601px) {
+  nav,
+  nav .nav-wrapper i,
+  nav a.button-collapse,
+  nav a.button-collapse i {
+    height: 48px;
+    line-height: 48px;
+  }
 }
