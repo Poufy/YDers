@@ -34,11 +34,11 @@
 
 - [ ] A way to automatically restart the server if it goes down incase of disconnection
 
-- [ ] Cool looking 404 error page
+- [x] Cool looking 404 error page
 
 - [ ] Put javascript methods in seperate files in the panel.js file
 
-- [ ] organize the materializecss
+- [ ] Organize the materializecss initializations
 
 - [x] SIGNUP/LOGIN in order to submit the form
 
@@ -48,7 +48,7 @@
 
 - [x] Better looking flash messages
 
-- [] Secure form get request
+- [] Secure requests with login information
 
 - [x] Admin table of current avaiable times and requests available
 

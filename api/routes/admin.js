@@ -147,9 +147,9 @@ router.get("/logout", (req, res) => {
 });
 
 /*WARNING BEEEP BEEEP*/
-//With this, the admin document can be updated without the
+//add ensureauthenticated method to the function parameters
 router.patch("/:adminId", (req, res, next) => {
-  const id = req.params.productId;
+  const id = req.params.adminId;
   //The goal here is find and updating the completedForms array by adding one element without having to use a get and then an update request to add the completedForm.
   Admin.findOneAndUpdate(
     { _id: id },

@@ -95,13 +95,6 @@
                             الغاء
                         </button>
                     </td>
-                    <!--Using the loop variable in the id so not all of them have the same id. I want to be able to pinpoint only one to take the text from.-->
-                    <!-- <td>
-          <div class="input-field inline">
-          <input id="reason_inline<%=i%>" type="text" class="validate">
-          <label for="reason_inline<%=i%>">السبب...</label>
-        </div></td> -->
-                    <!--Setting the id of the button to the id of the form document-->
                 </tr>
                 <% } %>
         </tbody>
@@ -202,9 +195,9 @@
               let adminId = document.getElementById("admin-id").innerHTML;
                 $.ajax({
                     type: "PATCH",
-                    url: `/api/admin/${adminId}`,
+                    url: `/admin/${adminId}`,
                     data: {
-                        completeForm: id
+                        completedForm: id
                     },
                     dataType: "json",
                     success: function() {

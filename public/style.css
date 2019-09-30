@@ -3,7 +3,8 @@
   padding: 0;
   list-style: none;
   text-decoration: none;
-  font-family: "Amiri", serif;
+  /* font-family: "Amiri", serif; */
+  font-family: "Tajawal", sans-serif;
 }
 *::-webkit-scrollbar {
   width: 0;
