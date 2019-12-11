@@ -1,16 +1,16 @@
 # TODOS
 
-- [] The admin can cancel the request with giving a reason in a textbox and confirm it, then the request will go into a log table that contains confirmed and canceled requests in different colors at the bottom of the page.
+- [x] The admin can cancel the request with giving a reason in a textbox and confirm it, then the request will go into a log table that contains confirmed and canceled requests in different colors at the bottom of the page.
 
-- [] Completed requests collection from requests instead of deleting.
+- [ ] Completed requests collection from requests instead of deleting.
 
-- [] When a user form is pending on a specific time it should not appear to the other users. So we should add a pending field on the time that the user chooses until the request is done.
+- [ ] When a user form is pending on a specific time it should not appear to the other users. So we should add a pending field on the time that the user chooses until the request is done.
 
-- [] The teacher collection might be unneccessary and could be deleted for an array that is attached to every admin's entry.
+- [ ] The teacher collection might be unneccessary and could be deleted for an array that is attached to every admin's entry.
 
-- [] Optional checkbox to choose a certain teacher from our teacher database and then show the times ONLY for that teacher
+- [ ] Optional checkbox to choose a certain teacher from our teacher database and then show the times ONLY for that teacher
 
-- [] Hide the form of the user is not logged in
+- [ ] Hide the form of the user is not logged in
 
 - [x] Get the GET/POST/DELETE/UPDATE requests working on /api/teachers
 
@@ -28,7 +28,7 @@
 
 - [x] Prevent duplicate signups with the same username
 
-- [ ] Add Multiple passport strategies (Facebook, Google)
+- [ ] Add Multiple passport strategies (Facebook, Google) (requires https)
 
 - [x] Consider the subject/day/time in the query
 
@@ -48,7 +48,7 @@
 
 - [x] Better looking flash messages
 
-- [] Secure requests with login information
+- [ ] Secure requests with login information
 
 - [x] Admin table of current avaiable times and requests available
 
