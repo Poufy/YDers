@@ -1,0 +1,38 @@
+{
+  "name": "yders",
+  "version": "1.0.0",
+  "description": "- [x] The admin can cancel the request with giving a reason in a textbox and confirm it, then the request will go into a log table that contains confirmed and canceled requests in different colors at the bottom of the page.",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "cookie": "^0.4.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.4.0",
+    "materialize-css": "^1.0.0",
+    "mongoose": "^5.9.3",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "locus": "^2.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Poufy/YDers.git"
+  },
+  "author": "Noor Al Deen Al Fayad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Poufy/YDers/issues"
+  },
+  "homepage": "https://github.com/Poufy/YDers#readme"
+}

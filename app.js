@@ -15,7 +15,8 @@ const userRouter = require("./api/routes/user");
 const adminRouter = require("./api/routes/admin");
 const completedFormRouter = require("./api/routes/completedForm");
 
-mongoose.connect(config.url, { useNewUrlParser: true });
+mongoose.connect(config.url, { useNewUrlParser: true, useUnifiedTopology: true  });
+mongoose.connection.on("open", ()=> console.log("Connected to DB"))
 /* MIDDLEWEAR */
 app.use(morgan("dev")); //funnel all requests through morgan for logging requests on the console
 app.use(express.static(__dirname + "/public"));
@@ -33,8 +34,8 @@ app.use(
   })
 );
 
-// Passport Config
-require("./config/passport")(passport);
+// // Passport Config
+// require("./config/passport")(passport);
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
